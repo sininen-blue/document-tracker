@@ -1,8 +1,7 @@
-<h1>{{ file }}</h1>
-<ul>
-  {% for tag in file.tag_set.all %}
-  <li>
-    {{ tag.title }}
-  </li>
-  {% endfor %}
-</ul>
+<form action="{% url 'document_tracker:add_tag' file.id %}" method="post">
+  {% csrf_token %}
+  <label for="tag_name">Add Tag:</label>
+  <input type="text" id="tag_name" name="tag_name">
+  <input type="color" id="tag_color" name="tag_color">
+  <input type="submit" value="AddedTag">
+</form>
