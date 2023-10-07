@@ -1,0 +1,9 @@
+{% if latest_file_list %}
+<ul>
+  {% for file in latest_file_list %}
+  <li><a href="/polls/{{ file.id }}/">{{ file.file_content }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No polls are available.</p>
+{% endif %}
