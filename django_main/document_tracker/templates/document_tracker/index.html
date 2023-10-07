@@ -1,7 +1,16 @@
 {% if latest_file_list %}
 <ul>
   {% for file in latest_file_list %}
-  <li><a href="/polls/{{ file.id }}/">{{ file.file_content }}</a></li>
+  <div style="display:flex">
+    <li>
+      <a href="{% url 'document_tracker:detail' file.id %}">{{ file.file_content }}</a>
+
+      {% for tag in file.tag_set.all %}
+      <p>{{ tag.title }}, </p>
+      {% endfor %}
+    </li>
+
+  </div>
   {% endfor %}
 </ul>
 {% else %}
