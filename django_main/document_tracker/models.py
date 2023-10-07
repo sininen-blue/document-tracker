@@ -13,4 +13,4 @@ class Tag(models.Model):
     color = models.CharField(max_length=7)
 
     def __str__(self):
-        return self.title_text
+        return self.title

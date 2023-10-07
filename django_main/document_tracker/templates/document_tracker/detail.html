@@ -1,1 +1,8 @@
 <h1>{{ file }}</h1>
+<ul>
+  {% for tag in file.tag_set.all %}
+  <li>
+    {{ tag.title }}
+  </li>
+  {% endfor %}
+</ul>
