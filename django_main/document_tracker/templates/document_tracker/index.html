@@ -1,18 +1,43 @@
-{% if latest_file_list %}
-<ul>
-  {% for file in latest_file_list %}
-  <div style="display:flex">
-    <li>
-      <a href="{% url 'document_tracker:detail' file.id %}">{{ file.file_content }}</a>
+<!DOCTYPE html>
+<html>
 
-      {% for tag in file.tag_set.all %}
-      <p>{{ tag.title }}, </p>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css">
+</head>
+
+<body>
+  <main>
+    {% if file_list %}
+    <ul>
+      {% for file in file_list %}
+      <div style="display:flex">
+        <li>
+          <a href="{% url 'document_tracker:detail' file.id %}">{{ file.file_content }}</a>
+          <p>created: {{ file.created_date }}</p>
+          <p>modified: {{ file.last_modified_date }}</p>
+
+          {% if file_tag_list %}
+          <p> tags: </p>
+          <ul>
+            {% for file_tag in file_tag_list %}
+            {% if file_tag.file == file %}
+            <li>
+              <p style="background:{{ file_tag.tag.color }}">{{ file_tag.tag }}</p>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+
+      </div>
       {% endfor %}
-    </li>
+    </ul>
+    {% else %}
+    <p>No Files are in storage</p>
+    {% endif %}
+  </main>
+</body>
 
-  </div>
-  {% endfor %}
-</ul>
-{% else %}
-<p>No polls are available.</p>
-{% endif %}
+</html>

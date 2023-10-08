@@ -8,3 +8,6 @@ urlpatterns = [
     path("file/<int:file_id>/", views.detail, name="detail"),
     path("file/<int:file_id>/add_tag/", views.add_tag, name="add_tag")
 ]
+# add remove edit delete file
+# -add- remove edit delete tag
+# add remove edit delete user

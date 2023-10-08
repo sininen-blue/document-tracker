@@ -3,13 +3,15 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.template import loader
 
-from .models import File, Tag
+from .models import File, Tag, FileTag
 
 
 def index(request):
-    latest_file_list = File.objects.order_by("-created_date")[:5]
+    file_list = File.objects.order_by("-created_date")
+    file_tag_list = FileTag.objects.all()
     context = {
-        "latest_file_list": latest_file_list,
+        "file_list": file_list,
+        "file_tag_list": file_tag_list,
     }
     return render(request, "document_tracker/index.html", context)
 
