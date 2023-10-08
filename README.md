@@ -16,3 +16,9 @@ enter the virtual environment
 python -m venv .venv
 pip install django
 ```
+
+```
+python django_main/manage.py makemigrations
+python django_main/manage.py migrate
+python django_main/manage.py runserver
+```
