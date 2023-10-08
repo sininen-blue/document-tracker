@@ -11,3 +11,8 @@ go into the project directory
 
 enter the virtual environment
 ``./.venv/Scripts/activate``
+
+```
+python -m venv .venv
+pip install django
+```
