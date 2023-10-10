@@ -41,6 +41,11 @@ def export_file(request, file_id):
     return response
 
 
+def delete_file(request, file_id):
+    File.objects.filter(pk=file_id).delete()
+    return redirect('/')
+
+
 def add_tag(request, file_id):
     # TODO error handling
     # TODO http response

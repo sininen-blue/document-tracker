@@ -27,8 +27,13 @@
             </li>
             {% endif %}
             {% endfor %}
+
+            {% endif %}
+            <form action="{%url 'document_tracker:delete_file' file.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Delete</button>
+            </form>
           </ul>
-          {% endif %}
         </li>
 
       </div>
