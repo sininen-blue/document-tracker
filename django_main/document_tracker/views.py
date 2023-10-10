@@ -2,10 +2,13 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.template import loader
-
+import os
 
 from .forms import UploadFileForm
 from .models import File, Tag, FileTag
+
+
+# TODO delete file from disk not just database
 
 
 def index(request):
@@ -42,6 +45,9 @@ def export_file(request, file_id):
 
 
 def delete_file(request, file_id):
+    file_instance = File.objects.get(pk=file_id)
+    # print(file_instance.file_content)
+    os.remove(str(file_instance.file_content))
     File.objects.filter(pk=file_id).delete()
     return redirect('/')
 
