@@ -13,7 +13,7 @@
       {% for file in file_list %}
       <div style="display:flex">
         <li>
-          <a href="{% url 'document_tracker:detail' file.id %}">{{ file.file_content }}</a>
+          <a href="{% url 'document_tracker:export_file' file.id %}">{{ file.file_content }}</a>
           <p>created: {{ file.created_date }}</p>
           <p>modified: {{ file.last_modified_date }}</p>
 

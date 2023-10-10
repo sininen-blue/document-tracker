@@ -34,12 +34,17 @@ def import_file(request):
     return render(request, "document_tracker/import_file.html", {"form": form})
 
 
+def export_file(request, file_id):
+    file = File.objects.get(pk=file_id)
+    response = HttpResponse(file.file_content, content_type='application/force-download')
+    response['Content-Disposition'] = f'attachment; filename="{file.file_content}"'
+    return response
+
 
 def add_tag(request, file_id):
     # TODO error handling
     # TODO http response
-    
     file = get_object_or_404(File, pk=file_id)
     Tag.objects.create(file=file, title=request.POST["tag_name"], color=request.POST["tag_color"])
 
-    return redirect('index')
+    return redirect('/')
