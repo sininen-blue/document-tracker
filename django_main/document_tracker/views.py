@@ -63,7 +63,7 @@ def add_tag(request, file_id):
             break
 
     if found_tag is False:
-        new_tag = Tag.objects.create(title=request.POST["tag_name"], color=request.POST["tag_color"])
+        new_tag = Tag.objects.create(title=request.POST["tag_name"])
         FileTag.objects.create(file=file, tag=new_tag)
 
     return redirect('/')

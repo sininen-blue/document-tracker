@@ -9,7 +9,6 @@ class File(models.Model):
 
 class Tag(models.Model):
     title = models.CharField(max_length=50)
-    color = models.CharField(max_length=7)
 
     def __str__(self):
         return self.title
