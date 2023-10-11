@@ -3,11 +3,12 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 </head>
 
 <body>
-  <main>
+  <main class="container">
+  <a href="{% url 'document_tracker:import_file' %}">Import</a>
     {% if file_list %}
     <ul>
       {% for file in file_list %}
@@ -23,7 +24,11 @@
             {% for file_tag in file_tag_list %}
             {% if file_tag.file == file %}
             <li>
-              <p style="background:{{ file_tag.tag.color }}">{{ file_tag.tag }}</p>
+              <p><mark>{{ file_tag.tag }}</mark></p>
+              <form action="{% url 'document_tracker:remove_tag' file_tag.id %}" method="post">
+              {% csrf_token %}
+              <button class="primary outline" type="submit">Delete Tag</button>
+              </form>
             </li>
             {% endif %}
             {% endfor %}
@@ -32,6 +37,10 @@
             <form action="{%url 'document_tracker:delete_file' file.id %}" method="post">
               {% csrf_token %}
               <button type="submit">Delete</button>
+            </form>
+
+            <form action="{%url 'document_tracker:detail' file.id %}" method="get">
+              <button type="submit">Tag Settings</button>
             </form>
           </ul>
         </li>

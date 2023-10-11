@@ -8,9 +8,6 @@ from .forms import UploadFileForm
 from .models import File, Tag, FileTag
 
 
-# TODO delete file from disk not just database
-
-
 def index(request):
     file_list = File.objects.order_by("-created_date")
     file_tag_list = FileTag.objects.all()
@@ -31,7 +28,7 @@ def import_file(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect("/")
     else:
         form = UploadFileForm()
     return render(request, "document_tracker/import_file.html", {"form": form})
@@ -39,8 +36,10 @@ def import_file(request):
 
 def export_file(request, file_id):
     file = File.objects.get(pk=file_id)
-    response = HttpResponse(file.file_content, content_type='application/force-download')
-    response['Content-Disposition'] = f'attachment; filename="{file.file_content}"'
+    response = HttpResponse(
+        file.file_content, content_type="application/force-download"
+    )
+    response["Content-Disposition"] = f'attachment; filename="{file.file_content}"'
     return response
 
 
@@ -49,13 +48,27 @@ def delete_file(request, file_id):
     # print(file_instance.file_content)
     os.remove(str(file_instance.file_content))
     File.objects.filter(pk=file_id).delete()
-    return redirect('/')
+    return redirect("/")
 
 
 def add_tag(request, file_id):
-    # TODO error handling
-    # TODO http response
+    # TODO disallow empty tag_names
     file = get_object_or_404(File, pk=file_id)
-    Tag.objects.create(file=file, title=request.POST["tag_name"], color=request.POST["tag_color"])
 
-    return redirect('/')
+    found_tag = False
+    for tag in Tag.objects.all():
+        if tag.title == request.POST["tag_name"]:
+            FileTag.objects.create(file=file, tag=tag)
+            found_tag = True
+            break
+
+    if found_tag is False:
+        new_tag = Tag.objects.create(title=request.POST["tag_name"])
+        FileTag.objects.create(file=file, tag=new_tag)
+
+    return redirect("/")
+
+
+def remove_tag(request, file_tag_id):
+    FileTag.objects.get(pk=file_tag_id).delete()
+    return redirect("/")
