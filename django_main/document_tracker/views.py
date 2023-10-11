@@ -53,6 +53,7 @@ def delete_file(request, file_id):
 
 
 def add_tag(request, file_id):
+    # TODO disallow empty tag_names
     file = get_object_or_404(File, pk=file_id)
 
     found_tag = False
