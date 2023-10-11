@@ -8,6 +8,12 @@ from .forms import UploadFileForm
 from .models import File, Tag, FileTag
 
 
+# TODO tag clean ups, currently when you delete the last instance of a tag,
+# it's still a tag
+# TODO tag editing, future me problem
+# TODO filenames
+
+
 def index(request):
     file_list = File.objects.order_by("-created_date")
     file_tag_list = FileTag.objects.all()
