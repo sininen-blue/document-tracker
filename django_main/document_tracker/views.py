@@ -53,9 +53,22 @@ def delete_file(request, file_id):
 
 
 def add_tag(request, file_id):
-    # TODO error handling
-    # TODO http response
     file = get_object_or_404(File, pk=file_id)
-    Tag.objects.create(file=file, title=request.POST["tag_name"], color=request.POST["tag_color"])
 
+    found_tag = False
+    for tag in Tag.objects.all():
+        if tag.title == request.POST["tag_name"]:
+            FileTag.objects.create(file=file, tag=tag)
+            found_tag = True
+            break
+
+    if found_tag is False:
+        new_tag = Tag.objects.create(title=request.POST["tag_name"], color=request.POST["tag_color"])
+        FileTag.objects.create(file=file, tag=new_tag)
+
+    return redirect('/')
+
+
+def remove_tag(request, file_tag_id):
+    FileTag.objects.get(pk=file_tag_id).delete()
     return redirect('/')

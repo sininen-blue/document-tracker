@@ -33,6 +33,10 @@
               {% csrf_token %}
               <button type="submit">Delete</button>
             </form>
+
+            <form action="{%url 'document_tracker:detail' file.id %}" method="get">
+              <button type="submit">Tag Settings</button>
+            </form>
           </ul>
         </li>
 
