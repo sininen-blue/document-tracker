@@ -11,6 +11,9 @@ urlpatterns = [
     path("import/", views.import_file, name="import_file"),
     path("export/<int:file_id>/", views.export_file, name="export_file"),
     path("delete/<int:file_id>/", views.delete_file, name="delete_file"),
+    path("login/", views.auth, name="auth"),
+    path("logout/", views.logout_view, name="logout_view"),
+    path("register/", views.register, name="register"),
 ]
 # add remove edit delete file
 # -add- remove edit delete tag

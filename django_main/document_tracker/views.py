@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.template import loader
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 import os
 
 from .forms import UploadFileForm
@@ -14,14 +16,51 @@ from .models import File, Tag, FileTag
 # TODO filenames
 
 
+def auth(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("/")
+        else:
+            return render(request, "document_tracker/login.html")
+    else:
+        return render(request, "document_tracker/login.html")
+
+
+def register(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        password_confirm = request.POST["password-confirm"]
+        # if user already exists don't allow
+        # don't allow empty strings
+        # all the other errors too
+        if password == password_confirm:
+            User.objects.create_user(username, None, password)
+            return redirect("/login/")
+    else:
+        return render(request, "document_tracker/register.html")
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("/login/")
+
+
 def index(request):
-    file_list = File.objects.order_by("-created_date")
-    file_tag_list = FileTag.objects.all()
-    context = {
-        "file_list": file_list,
-        "file_tag_list": file_tag_list,
-    }
-    return render(request, "document_tracker/index.html", context)
+    if request.user.is_authenticated:
+        file_list = File.objects.order_by("-created_date")
+        file_tag_list = FileTag.objects.all()
+        context = {
+            "file_list": file_list,
+            "file_tag_list": file_tag_list,
+        }
+        return render(request, "document_tracker/index.html", context)
+    else:
+        return render(request, "document_tracker/login.html")
 
 
 def detail(request, file_id):
