@@ -8,6 +8,7 @@
 
 <body>
   <main class="container">
+  <a href="{% url 'document_tracker:logout_view' %}">Logout?</a>
   <a href="{% url 'document_tracker:import_file' %}">Import</a>
     {% if file_list %}
     <ul>
