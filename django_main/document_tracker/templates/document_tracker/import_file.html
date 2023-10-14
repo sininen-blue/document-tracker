@@ -2,16 +2,22 @@
 <html>
 <head>
     <title>Import A File</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 </head>
 <body>
+<main class="container">
     <h2>Upload Files</h2>
 
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+
+        <label for="version_notes"
+        <input type="text" id="version_notes" name="version_notes">
+        
         <button type="submit">Upload</button>
     </form>
     </ul>
+</main>
 </body>
 </html>

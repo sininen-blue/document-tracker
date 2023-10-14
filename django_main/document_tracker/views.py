@@ -72,11 +72,19 @@ def import_file(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            file_upload = form.save(commit=False)
+            file_upload.created_by = request.user
+            file_upload.last_modified_by = request.user
+            file_upload = file_upload.save()
             return redirect("/")
     else:
         form = UploadFileForm()
-    return render(request, "document_tracker/import_file.html", {"form": form})
+
+    context = {
+        "form": form,
+        "current_user": request.user
+    }
+    return render(request, "document_tracker/import_file.html", context)
 
 
 def export_file(request, file_id):
