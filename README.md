@@ -9,11 +9,9 @@ clone the project
 go into the project directory
 ``cd document-tracker``
 
-enter the virtual environment
-``./.venv/Scripts/activate``
-
 ```
 python -m venv .venv
+./.venv/Scripts/activate
 pip install django
 ```
 
