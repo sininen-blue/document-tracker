@@ -8,11 +8,17 @@
 <main class="container">
     <h2>Upload Files</h2>
 
-    <form method="post" enctype="multipart/form-data">
+    <form action="{% url 'document_tracker:import_file' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
 
-        <label for="version_notes"
+        <label for="uploaded_file">Import File:</label>
+        <input type="file" id="uploaded_file" name="uploaded_file" required>
+
+        <label for="file_name">File Name:</label>
+        <input type="text" id="file_name" name="file_name" placeholder="Q3 Financial Report" required>
+        <small>file extensions (i.e. .docx, .txt, etc) not included</small>
+         
+        <label for="version_notes">Version Notes:</label>
         <input type="text" id="version_notes" name="version_notes">
         
         <button type="submit">Upload</button>

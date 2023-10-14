@@ -52,7 +52,7 @@ def logout_view(request):
 
 def index(request):
     if request.user.is_authenticated:
-        file_list = File.objects.order_by("-created_date")
+        file_list = File.objects.filter(latest=True).order_by("file_name")
         file_tag_list = FileTag.objects.all()
         context = {
             "file_list": file_list,
@@ -70,21 +70,35 @@ def detail(request, file_id):
 
 def import_file(request):
     if request.method == "POST":
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            file_upload = form.save(commit=False)
-            file_upload.created_by = request.user
-            file_upload.last_modified_by = request.user
-            file_upload = file_upload.save()
-            return redirect("/")
-    else:
-        form = UploadFileForm()
+        uploaded_file = request.FILES["uploaded_file"]
+        uploaded_file_name = request.POST["file_name"]
+        uploaded_version_notes = request.POST["version_notes"]
 
-    context = {
-        "form": form,
-        "current_user": request.user
-    }
-    return render(request, "document_tracker/import_file.html", context)
+        previous_version = File.objects.filter(file_name=uploaded_file_name)
+        if previous_version:
+            previous_version = previous_version.get(latest=True)
+            previous_version.latest = False
+            previous_version.save()
+            File.objects.create(
+                file_content=uploaded_file,
+                file_name=uploaded_file_name,
+                created_by=previous_version.created_by,
+                last_modified_by=request.user,
+                version_number=previous_version.version_number+1,
+                version_notes=uploaded_version_notes
+            )
+        else:
+            File.objects.create(
+                file_content=uploaded_file,
+                file_name=uploaded_file_name,
+                created_by=request.user,
+                last_modified_by=request.user,
+                version_number=1,
+                version_notes=uploaded_version_notes
+            )
+        return redirect("/")
+    else:
+        return render(request, "document_tracker/import_file.html")
 
 
 def export_file(request, file_id):
