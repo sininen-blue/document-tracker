@@ -27,8 +27,8 @@
             <li>
               <p><mark>{{ file_tag.tag }}</mark></p>
               <form action="{% url 'document_tracker:remove_tag' file_tag.id %}" method="post">
-              {% csrf_token %}
-              <button class="primary outline" type="submit">Delete Tag</button>
+                {% csrf_token %}
+                <button class="primary outline" type="submit">Delete Tag</button>
               </form>
             </li>
             {% endif %}
