@@ -111,10 +111,7 @@ def export_file(request, file_id):
 
 
 def delete_file(request, file_id):
-    file_instance = File.objects.get(pk=file_id)
-    # print(file_instance.file_content)
-    os.remove(str(file_instance.file_content))
-    File.objects.filter(pk=file_id).delete()
+    File.objects.get(pk=file_id).delete()
     return redirect("/")
 
 

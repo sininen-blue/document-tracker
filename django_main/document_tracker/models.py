@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import os
 
 
 class File(models.Model):
@@ -17,6 +18,10 @@ class File(models.Model):
     latest = models.BooleanField(default=True)
     version_number = models.IntegerField(default=0)
     version_notes = models.CharField(max_length=256, default="")
+
+    def delete(self, *args, **kwargs):
+        os.remove(str(self.file_content))
+        super().delete(*args, **kwargs)
 
 
 class Tag(models.Model):
