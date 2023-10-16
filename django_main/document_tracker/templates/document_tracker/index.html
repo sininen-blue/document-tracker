@@ -7,51 +7,62 @@
 </head>
 
 <body>
-  <main class="container">
-  <a href="{% url 'document_tracker:logout_view' %}">Logout?</a>
-  <a href="{% url 'document_tracker:import_file' %}">Import</a>
-    {% if file_list %}
-    <ul>
-      {% for file in file_list %}
-      <div style="display:flex">
-        <li>
-          <a href="{% url 'document_tracker:export_file' file.id %}">{{ file.file_content }}</a>
-          <p>created: {{ file.created_date }}</p>
-          <p>modified: {{ file.last_modified_date }}</p>
+<main class="container-fluid">
 
-          {% if file_tag_list %}
-          <p> tags: </p>
-          <ul>
-            {% for file_tag in file_tag_list %}
-            {% if file_tag.file == file %}
-            <li>
-              <p><mark>{{ file_tag.tag }}</mark></p>
-              <form action="{% url 'document_tracker:remove_tag' file_tag.id %}" method="post">
-                {% csrf_token %}
-                <button class="primary outline" type="submit">Delete Tag</button>
-              </form>
-            </li>
-            {% endif %}
-            {% endfor %}
+<div class="container">
+<h3>Document Tracker</h3>
+<input type="search" id="search" name="search" placeholder="2022 tags:financial">
 
-            {% endif %}
-            <form action="{%url 'document_tracker:delete_file' file.id %}" method="post">
-              {% csrf_token %}
-              <button type="submit">Delete</button>
-            </form>
+<div class="grid">
+  <a href="{% url 'document_tracker:import_file' %}" role="button">Import</a>
+  <a href="{% url 'document_tracker:logout_view' %}" role="button">Logout</a>
+  <a href="admin/" role="button">Admin Panel</a>
+</div>
+</div>
+<hr>
 
-            <form action="{%url 'document_tracker:detail' file.id %}" method="get">
-              <button type="submit">Tag Settings</button>
-            </form>
-          </ul>
-        </li>
+    <figure>
+      <table role="grid">
+      <thead>
+        <tr>
+          <th>file name</th>
+          <th>tags</th>
+          <th>created by</th>
+          <th>last edited by</th>
+          <th>created date</th>
+          <th>last modified date</th>
+          <th>version</th>
+          <th>version notes</th>
+          <th>actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if file_list %}
+        {% for file in file_list %}
+        <tr>
+        
+        <td>{{ file.file_name }}</td>
 
-      </div>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>No Files are in storage</p>
-    {% endif %}
+        <td>tags</td>
+        
+        <td>{{ file.created_by }}</td>
+        <td>{{ file.last_modified_by }}</td>
+        <td>{{ file.created_date }}</td>
+        <td>{{ file.last_modified_date }}</td>
+        <td>{{ file.version_number }}</td>
+        <td>{{ file.version_notes }}</td>
+        <td>
+          <a href="{%url 'document_tracker:export_file' file.id %}" role="button">export</a>
+          <a href="{%url 'document_tracker:detail' file.id %}" role="button">add tag</a>
+          <a class="outline" href="{%url 'document_tracker:delete_file' file.id %}" role="button">delete</a>
+        </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+
+      </tbody>
+      </table>
+    </figure>
   </main>
 </body>
 
