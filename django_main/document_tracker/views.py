@@ -105,7 +105,12 @@ def export_file(request, file_id):
 
 
 def delete_file(request, file_id):
-    File.objects.get(pk=file_id).delete()
+    file_instance = File.objects.get(pk=file_id)
+    file_list = File.objects.filter(file_name=file_instance.file_name)
+
+    for file in file_list:
+        file.delete()
+
     return redirect("/")
 
 
