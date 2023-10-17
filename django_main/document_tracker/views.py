@@ -127,6 +127,14 @@ def add_tag(request, file_id):
 
 
 def remove_tag(request, file_tag_id):
-    file_tag_instance = FileTag.objects.get(pk=file_tag_id).delete()
-    
+    file_tag_instance = FileTag.objects.get(pk=file_tag_id)
+    file_tag_list = FileTag.objects.filter(tag=file_tag_instance.tag)
+
+    if file_tag_list.count() == 1:
+        file_tag_instance.delete()
+        lone_tag = Tag.objects.get(title=file_tag_instance.tag.title)
+        lone_tag.delete()
+    else:
+        file_tag_instance.delete()
+
     return redirect("/")
