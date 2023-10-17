@@ -10,12 +10,6 @@ from .forms import UploadFileForm
 from .models import File, Tag, FileTag
 
 
-# TODO tag clean ups, currently when you delete the last instance of a tag,
-# it's still a tag
-# TODO tag editing, future me problem
-# TODO filenames
-
-
 def auth(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -116,7 +110,6 @@ def delete_file(request, file_id):
 
 
 def add_tag(request, file_id):
-    # TODO disallow empty tag_names
     file = get_object_or_404(File, pk=file_id)
 
     found_tag = False
@@ -134,5 +127,14 @@ def add_tag(request, file_id):
 
 
 def remove_tag(request, file_tag_id):
-    FileTag.objects.get(pk=file_tag_id).delete()
+    file_tag_instance = FileTag.objects.get(pk=file_tag_id)
+    file_tag_list = FileTag.objects.filter(tag=file_tag_instance.tag)
+
+    if file_tag_list.count() == 1:
+        file_tag_instance.delete()
+        lone_tag = Tag.objects.get(title=file_tag_instance.tag.title)
+        lone_tag.delete()
+    else:
+        file_tag_instance.delete()
+
     return redirect("/")
