@@ -100,7 +100,8 @@ def export_file(request, file_id):
     response = HttpResponse(
         file.file_content, content_type="application/force-download"
     )
-    response["Content-Disposition"] = f'attachment; filename="{file.file_content}"'
+    file_extension = os.path.splitext(file.file_content.name)
+    response["Content-Disposition"] = f'attachment; filename="{file.file_name}{file_extension[1]}"'
     return response
 
 
