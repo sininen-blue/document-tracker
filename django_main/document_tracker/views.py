@@ -78,8 +78,8 @@ def import_file(request):
                 file_name=uploaded_file_name,
                 created_by=previous_version.created_by,
                 last_modified_by=request.user,
-                version_number=previous_version.version_number+1,
-                version_notes=uploaded_version_notes
+                version_number=previous_version.version_number + 1,
+                version_notes=uploaded_version_notes,
             )
         else:
             File.objects.create(
@@ -88,7 +88,7 @@ def import_file(request):
                 created_by=request.user,
                 last_modified_by=request.user,
                 version_number=1,
-                version_notes=uploaded_version_notes
+                version_notes=uploaded_version_notes,
             )
         return redirect("/")
     else:
@@ -101,7 +101,9 @@ def export_file(request, file_id):
         file.file_content, content_type="application/force-download"
     )
     file_extension = os.path.splitext(file.file_content.name)
-    response["Content-Disposition"] = f'attachment; filename="{file.file_name}{file_extension[1]}"'
+    response[
+        "Content-Disposition"
+    ] = f'attachment; filename="{file.file_name}{file_extension[1]}"'
     return response
 
 
