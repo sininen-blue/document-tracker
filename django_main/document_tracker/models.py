@@ -20,7 +20,7 @@ class File(models.Model):
     version_notes = models.CharField(max_length=256, default="")
 
     def delete(self, *args, **kwargs):
-        os.remove(str(self.file_content))
+        os.remove(str(self.file_content.name))
         super().delete(*args, **kwargs)
 
 
