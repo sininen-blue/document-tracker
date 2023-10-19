@@ -4,9 +4,9 @@ from django.urls import reverse
 from django.template import loader
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 import os
 
-from .forms import UploadFileForm
 from .models import File, Tag, FileTag
 
 
@@ -47,6 +47,21 @@ def logout_view(request):
 def index(request):
     if request.user.is_authenticated:
         file_list = File.objects.filter(latest=True).order_by("file_name")
+        file_tag_list = FileTag.objects.all()
+        context = {
+            "file_list": file_list,
+            "file_tag_list": file_tag_list,
+        }
+        return render(request, "document_tracker/index.html", context)
+    else:
+        return render(request, "document_tracker/login.html")
+
+
+def search_view(request, search_term):
+    if request.user.is_authenticated:
+        file_list = File.objects.filter(file_name__icontains=search_term).order_by(
+            "file_name"
+        )
         file_tag_list = FileTag.objects.all()
         context = {
             "file_list": file_list,
