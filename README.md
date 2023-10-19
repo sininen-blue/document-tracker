@@ -1,5 +1,5 @@
 # document-tracker
- A simple document tracker
+ A simple document tracker project for school
 
 
 ## Quickstart
