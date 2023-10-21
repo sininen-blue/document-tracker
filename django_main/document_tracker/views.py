@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.template import loader
@@ -39,24 +40,24 @@ def register(request):
         return render(request, "document_tracker/register.html")
 
 
+@login_required(redirect_field_name="auth", login_url="login/")
 def logout_view(request):
     logout(request)
     return redirect("/login/")
 
 
+@login_required(redirect_field_name="auth", login_url="login/")
 def index(request):
-    if request.user.is_authenticated:
-        file_list = File.objects.filter(latest=True).order_by("file_name")
-        file_tag_list = FileTag.objects.all()
-        context = {
-            "file_list": file_list,
-            "file_tag_list": file_tag_list,
-        }
-        return render(request, "document_tracker/index.html", context)
-    else:
-        return render(request, "document_tracker/login.html")
+    file_list = File.objects.filter(latest=True).order_by("file_name")
+    file_tag_list = FileTag.objects.all()
+    context = {
+        "file_list": file_list,
+        "file_tag_list": file_tag_list,
+    }
+    return render(request, "document_tracker/index.html", context)
 
 
+@login_required(redirect_field_name="auth", login_url="login/")
 def search_view(request, search_term):
     if request.user.is_authenticated:
         file_list = File.objects.filter(file_name__icontains=search_term).order_by(
@@ -72,11 +73,13 @@ def search_view(request, search_term):
         return render(request, "document_tracker/login.html")
 
 
+@login_required(redirect_field_name="auth", login_url="login/")
 def detail(request, file_id):
     file = get_object_or_404(File, pk=file_id)
     return render(request, "document_tracker/detail.html", {"file": file})
 
 
+@login_required(redirect_field_name="auth", login_url="login/")
 def import_file(request):
     if request.method == "POST":
         uploaded_file = request.FILES["uploaded_file"]
@@ -110,6 +113,7 @@ def import_file(request):
         return render(request, "document_tracker/import_file.html")
 
 
+@login_required(redirect_field_name="auth", login_url="login/")
 def export_file(request, file_id):
     file = File.objects.get(pk=file_id)
     response = HttpResponse(
@@ -122,6 +126,7 @@ def export_file(request, file_id):
     return response
 
 
+@login_required(redirect_field_name="auth", login_url="login/")
 def delete_file(request, file_id):
     file_instance = File.objects.get(pk=file_id)
     file_list = File.objects.filter(file_name=file_instance.file_name)
@@ -132,6 +137,7 @@ def delete_file(request, file_id):
     return redirect("/")
 
 
+@login_required(redirect_field_name="auth", login_url="login/")
 def add_tag(request, file_id):
     file = get_object_or_404(File, pk=file_id)
 
@@ -149,6 +155,7 @@ def add_tag(request, file_id):
     return redirect("/")
 
 
+@login_required(redirect_field_name="auth", login_url="login/")
 def remove_tag(request, file_tag_id):
     file_tag_instance = FileTag.objects.get(pk=file_tag_id)
     file_tag_list = FileTag.objects.filter(tag=file_tag_instance.tag)
