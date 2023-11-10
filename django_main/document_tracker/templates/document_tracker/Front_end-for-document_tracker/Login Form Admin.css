@@ -1,0 +1,75 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:300);
+
+body{
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Poppins";
+  background: #303030;
+}
+.login-page {
+  width: 400px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #9AA4A7;
+  max-width: 400px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.10), 0 5px 5px 0 rgba(0, 0, 0, 0.40);
+}
+.form input {
+  font-family: "Poppins", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  border-radius: 7px;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  
+}
+.form button {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #BAFF39;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: black;
+  border-radius: 7px;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  font-weight: bolder;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #f2f2f2;
+}
+
+.text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    font-size: 45px;
+    background-image: linear-gradient(90deg, white, #BAFF39);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h3 {
+  color: white;
+}
+
+a {
+  color: #BAFF39;
+  font-weight: bolder;
+}
