@@ -1,144 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         {% load static %}
         <link rel="stylesheet" href="{% static 'document_tracker/index.css' %}">
-    <title>DocTrack.com</title>
-</head>
-<body>
-    <div class="container">
-        <div class="header"><h2><svg width="207" height="25" viewBox="0 0 207 25" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <rect width="207" height="25" fill="url(#pattern0)"/>
-            <defs>
-            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-            <use xlink:href="#image0_38_86" transform="matrix(0.00214592 0 0 0.0177682 0 -0.0774678)"/>
-            </pattern>
-            </defs>
+        <title>DocTrack.com</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header"><h2><svg width="207" height="25" viewBox="0 0 207 25" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect width="207" height="25" fill="url(#pattern0)"/>
+                <defs>
+                    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                        <use xlink:href="#image0_38_86" transform="matrix(0.00214592 0 0 0.0177682 0 -0.0774678)"/>
+                    </pattern>
+                </defs>
             </svg>
             </h2>
-          <div class="user-btn">
-            <p>User &nbsp;<button><i class="fas fa-user-circle"></i></button></p>
-            <div class="user-content">
+                <div class="user-btn">
+                    <p>User &nbsp;<button><i class="fas fa-user-circle"></i></button></p>
+                    <div class="user-content">
                         <a href="{% url 'document_tracker:logout_view' %}">Sign Out</a>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-    </div>  
-    <input type="checkbox" name="" id="check">
+        </div>  
+        <input type="checkbox" name="" id="check">
 
-    <div class="sidebar-container">
-      <label for="check">
-        <span class="fas fa-times" id="times"></span>
-        <span class="fas fa-bars" id="bars"></span>
-      </label>
-      <div class="head"><h1>Menu</h1></div>
+        <div class="sidebar-container">
+            <label for="check">
+                <span class="fas fa-times" id="times"></span>
+                <span class="fas fa-bars" id="bars"></span>
+            </label>
+            <div class="head"><h1>Menu</h1></div>
             <div class="import">
                 <!-- don't know why the url namespacing it doesn't work -->
                 <button onclick="location.href='/file/import'" type="button" class="import-btn">Import</button>
             </div>
 
-          <div class="split-btn">
-          <button type="button" class="export-btn" onclick="toggleExportOptions()">Export</button>
+            <div class="split-btn">
+                <button type="button" class="export-btn" onclick="toggleExportOptions()">Export</button>
                 <!-- sidebar -->
-          <div id="exportOptions" class="dropdown">
-            <button onclick="exportToPDF()">PDF</button>
-            <button onclick="exportToWord()">Word</button>
-          </div>
-        </div>
-    </div>
-
-    <div class="table-container">
-      <table id="myTable">
-        <thead>
-          <tr>
-            <th colspan="9">
-                <div class="table-header">
-                    <div class="title">Document</div>
-                                <!-- TODO -->
-                    <div class="search-bar">
-                        <input type="text" class="search-input" placeholder="Search">
-                        <i class="fas fa-search search-icon"></i>
-                    </div>
+                <div id="exportOptions" class="dropdown">
+                    <button onclick="exportToPDF()">PDF</button>
+                    <button onclick="exportToWord()">Word</button>
                 </div>
+            </div>
+        </div>
 
-                <div class="table-scroll">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style="width: 300px;">File Name
-                                <button onclick="toggleFilter()" id="filterButton"><i class="fa fa-caret-down filter-icon"></i></button>
-                            </th>
-                                <th style="width: 150px;">Tags</th>
-                                <th style="max-width: 75px;">Created By</th>
-                                <th style="max-width: 75px;">Last Modified By</th>
-                                <th style="max-width: 50px;">Created</th>
-                                <th style="max-width: 50px;">Last Modified</th>
-                                <th style="width: 75px;">Version</th>
-                                <th style="max-width: 200px;">Version Notes</th>
-                                <th style="width: 75px;">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+        <div class="table-container">
+            <table id="myTable">
+                <thead>
+                    <tr>
+                        <th colspan="9">
+                            <div class="table-header">
+                                <div class="title">Document</div>
+                                <!-- TODO -->
+                                <div class="search-bar">
+                                    <input type="text" class="search-input" placeholder="Search">
+                                    <i class="fas fa-search search-icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="table-scroll">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 300px;">File Name
+                                                <button onclick="toggleFilter()" id="filterButton"><i class="fa fa-caret-down filter-icon"></i></button>
+                                            </th>
+                                            <th style="width: 150px;">Tags</th>
+                                            <th style="max-width: 75px;">Created By</th>
+                                            <th style="max-width: 75px;">Last Modified By</th>
+                                            <th style="max-width: 50px;">Created</th>
+                                            <th style="max-width: 50px;">Last Modified</th>
+                                            <th style="width: 75px;">Version</th>
+                                            <th style="max-width: 200px;">Version Notes</th>
+                                            <th style="width: 75px;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                         {% if file_list %}
                                         {% for file in file_list %}
                                         <tr>
                                             <td>{{ file.file_name }}</td>
-                                            <td>temp tags</td>
+
+                                            <td> <!-- should turn these into links at some point -->
+                                                {% for file_tag in file.tags.all %}
+                                                <p>{{ file_tag.tag.title }}</p>
+                                                {% endfor %}
+                                            </td>
+
                                             <td>{{ file.created_by }}</td>
                                             <td>{{ file.last_mobified_by }}</td>
                                             <td>{{ file.created_date }}</td>
                                             <td>{{ file.last_modified_date }}</td>
                                             <td>{{ file.version_number }}</td>
                                             <td>{{ file.version_notes }}</td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
+                                            <td>
+                                                <div class="btn">
+                                                    <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
+                                                    <div class="ellipsis-ctn ctn-left-center-pos">
                                                         <a href="{% url 'document_tracker:export_file' file.id %}">Export</a>
                                                         <a href="{% url 'document_tracker:rename_file' file.id %}">Rename</a>
                                                         <a href="{% url 'document_tracker:delete_file' file.id %}">Delete</a>
                                                         <a href="{% url 'document_tracker:detail' file.id %}">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             {% endfor %}
                                             {% endif %}
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </th>
-            </tr>
-        </thead>
-     </table>
-    </div>
-</body>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </body>
 
-<script>
-  function toggleExportOptions() {
-    var exportOptions = document.getElementById('exportOptions');
-    if (exportOptions.style.display === 'block') {
-      exportOptions.style.display = 'none';
-    } else {
-      exportOptions.style.display = 'block'
+    <script>
+    function toggleExportOptions() {
+        var exportOptions = document.getElementById('exportOptions');
+        if (exportOptions.style.display === 'block') {
+            exportOptions.style.display = 'none';
+        } else {
+            exportOptions.style.display = 'block'
+        }
     }
-  }
 
-  var filterButton = document.getElementById('filterButton');
-  var filterIcon = document.querySelector('.filter-icon');
+    var filterButton = document.getElementById('filterButton');
+    var filterIcon = document.querySelector('.filter-icon');
 
-  function toggleFilter() {
-    if (filterIcon.classList.contains('up')) {
-        filterIcon.classList.remove('up');
-    } else {
-        filterIcon.classList.add('up');
+    function toggleFilter() {
+        if (filterIcon.classList.contains('up')) {
+            filterIcon.classList.remove('up');
+        } else {
+            filterIcon.classList.add('up');
+        }
     }
-  }
-</script>
+    </script>
 
 </html>
 

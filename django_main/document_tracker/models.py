@@ -32,5 +32,5 @@ class Tag(models.Model):
 
 
 class FileTag(models.Model):
-    file = models.ForeignKey(File, on_delete=models.CASCADE)
+    file = models.ForeignKey(File, on_delete=models.CASCADE, related_name="tags")
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
