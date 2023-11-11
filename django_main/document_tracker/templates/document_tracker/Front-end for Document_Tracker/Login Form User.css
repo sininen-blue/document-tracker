@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins:300);
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@600&family=Roboto:wght@500;700&family=Wallpoet&display=swap');
+
 
 body{
     height: 100vh;
@@ -56,17 +58,28 @@ body{
 }
 
 .text {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bolder;
-    font-size: 45px;
-    background-image: linear-gradient(90deg, white, #BAFF39);
+    font-family: 'Wallpoet', sans-serif;
+    font-size: 37px;
+    background: linear-gradient(90deg, green, #07bf76, #BAFF39,  white, #f2f2f2);
+    background-size: 400%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: animate 10s linear infinite;
+}
+@keyframes animate {
+  0% {
+      background-position: 0%;
+  }
+
+  100% {
+      background-position: 400%;
+  }
 }
 
 h3 {
     color: white;
+    font-family: 'Poppins' sans-serif;
 }
 
 a {

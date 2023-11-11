@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@600&family=Roboto:wght@500;700&family=Wallpoet&display=swap');
 
 * {
     margin: 0;
@@ -24,13 +24,29 @@ body {
     justify-content: space-between;
 }
 .header h2 {
-    font-size: 40px;
+    font-size: 30px;
     text-transform: uppercase;
     color: white;
     text-align: left;
     text-indent: 50px;
-    margin-top: 15px;
+    margin-top: 25px;
+    font-family: 'Wallpoet', sans-serif;
+    background: linear-gradient(90deg, green, #07bf76, #BAFF39,  white, #f2f2f2);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate 10s linear infinite;
 }
+@keyframes animate {
+    0% {
+        background-position: 0%;
+    }
+  
+    100% {
+        background-position: 400%;
+    }
+  }
 .user-btn {
     position: relative;
     display: inline-block;
@@ -86,13 +102,7 @@ body {
     background: rgba(186, 255, 57, 0.8);
 }
 .sidebar-container h1 {
-    background: linear-gradient(90deg, #104f55, #32746d, 
-    #9ec5ab, #01200f, #011502);
-    background-size: 400%;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: animate 10s linear infinite;
+    color: black;
     font-size: 30px;
     font-weight: bolder;
     padding: 30px;
