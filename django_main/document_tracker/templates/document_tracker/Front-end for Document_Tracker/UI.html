@@ -14,12 +14,13 @@
           <div class="user-btn">
             <p>User &nbsp;<button><i class="fas fa-user-circle"></i></button></p>
             <div class="user-content">
-              <a href="#">Sign Out</a>
+                        <a href="{% url 'document_tracker:logout_view' %}">Sign Out</a>
             </div>
           </div>
         </div>
     </div>  
     <input type="checkbox" name="" id="check">
+
     <div class="sidebar-container">
       <label for="check">
         <span class="fas fa-times" id="times"></span>
@@ -31,12 +32,14 @@
         </div>
           <div class="split-btn">
           <button type="button" class="export-btn" onclick="toggleExportOptions()">Export</button>
+                <!-- sidebar -->
           <div id="exportOptions" class="dropdown">
             <button onclick="exportToPDF()">PDF</button>
             <button onclick="exportToWord()">Word</button>
           </div>
         </div>
     </div>
+
     <div class="table-container">
       <table id="myTable">
         <thead>
@@ -44,11 +47,13 @@
             <th colspan="9">
                 <div class="table-header">
                     <div class="title">Document</div>
+                                <!-- TODO -->
                     <div class="search-bar">
                         <input type="text" class="search-input" placeholder="Search" required/>
                         <i class="fas fa-search search-icon"></i>
                     </div>
                 </div>
+
                 <div class="table-scroll">
                     <table>
                         <thead>
@@ -67,15 +72,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                        {% if file_list %}
+                                        {% for file in file_list %}
+                                        <tr>
+                                            <td>{{ file.file_name }}</td>
+                                            <td>temp tags</td>
+                                            <td>{{ file.created_by }}</td>
+                                            <td>{{ file.last_mobified_by }}</td>
+                                            <td>{{ file.created_date }}</td>
+                                            <td>{{ file.last_modified_date }}</td>
+                                            <td>{{ file.version_number }}</td>
+                                            <td>{{ file.version_notes }}</td>
                                 <td>
                                     <div class="btn">
                                         <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
@@ -86,266 +93,8 @@
                                         </div>
                                     </div>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello World</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                            {% endfor %}
+                                            {% endif %}
                             </tr>
                         </tbody>
                     </table>
@@ -355,7 +104,6 @@
         </thead>
      </table>
     </div>
-  </div>
 </body>
 
 <script>

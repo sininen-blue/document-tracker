@@ -7,21 +7,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
           integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="Login Form User.css">      
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'document_tracker:user-login.css' %}">      
 </head>
+
 <body style="display: flex; align-items: center; justify-content: center;">
     <div class="login-page">
         <div class="form">
             <form class="login-form" method="post">
                 <h2 class="text">DOCTRACKER</h2>
                 <h3>USER LOGIN</h3>
-                <input type="text" placeholder="Username" required/>
-                <input type="password" placeholder="Password" required/>
-                <button type="submit" name="send2 ">login</button>
-                <br>
-                <br>
-                <a href="Login Form admin.html">Admin Login</a>
-            </form>
+                    <form action="{% url 'document_tracker:auth' %}" method="post">
+                        {% csrf_token %}
+                        <input id="username" name="username" type="text" placeholder="Username" required/>
+                        <input id="password" name="password" type="password" placeholder="Password" required/>
+                        <button type="submit">login</button>
+                        <br>
+                        <br>
+                        <a href="{% url 'admin' %}">Admin Login</a>
+                    </form>
         </div>
     </div>
 </body>
