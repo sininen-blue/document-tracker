@@ -98,7 +98,8 @@
                                     <div class="btn">
                                         <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
                                         <div class="ellipsis-ctn ctn-left-center-pos">
-                                                        <a href="#">Rename</a>
+                                                        <a href="{% url 'document_tracker:export_file' file.id %}">Export</a>
+                                                        <a href="{% url 'document_tracker:rename_file' file.id %}">Rename</a>
                                                         <a href="{% url 'document_tracker:delete_file' file.id %}">Delete</a>
                                                         <a href="{% url 'document_tracker:detail' file.id %}">File Info</a>
                                         </div>

@@ -123,15 +123,14 @@ def export_file(request, file_id):
 
 
 def rename_file(request, file_id):
-    if request.method == 'POST':
-        file = File.objects.get(pk=file_id)
-        file.file_name = request.POST["new_file_name"]
+    file = File.objects.get(pk=file_id)
+    if request.method == "POST":
+        file.file_name = request.POST["rename"]
         file.save()
 
-        return redirect("index")
+        return redirect("/")
 
-    return render(request, "document_tracker/rename.html")
-
+    return render(request, "document_tracker/rename.html", {"file": file})
 
 
 @login_required(redirect_field_name="auth", login_url="login/")
