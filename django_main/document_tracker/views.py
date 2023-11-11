@@ -1,11 +1,7 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.template import loader
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import Q
 import os
 
 from .models import File, Tag, FileTag
@@ -124,6 +120,18 @@ def export_file(request, file_id):
         "Content-Disposition"
     ] = f'attachment; filename="{file.file_name}{file_extension[1]}"'
     return response
+
+
+def rename_file(request, file_id):
+    if request.method == 'POST':
+        file = File.objects.get(pk=file_id)
+        file.file_name = request.POST["new_file_name"]
+        file.save()
+
+        return redirect("index")
+
+    return render(request, "document_tracker/rename.html")
+
 
 
 @login_required(redirect_field_name="auth", login_url="login/")

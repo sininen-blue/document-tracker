@@ -36,9 +36,11 @@
         <span class="fas fa-bars" id="bars"></span>
       </label>
       <div class="head"><h1>Menu</h1></div>
-          <div class="import">
-                <button onclick="location.href={% url 'document_tracker:import_file' %}" type="button" class="import-btn">Import</button>
-        </div>
+            <div class="import">
+                <!-- don't know why the url namespacing it doesn't work -->
+                <button onclick="location.href='/file/import'" type="button" class="import-btn">Import</button>
+            </div>
+
           <div class="split-btn">
           <button type="button" class="export-btn" onclick="toggleExportOptions()">Export</button>
                 <!-- sidebar -->
