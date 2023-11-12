@@ -44,29 +44,39 @@ def logout_view(request):
 
 @login_required(redirect_field_name="auth", login_url="login/")
 def index(request):
-    file_list = File.objects.filter(latest=True).order_by("file_name")
-    file_tag_list = FileTag.objects.all()
+    file_list = File.objects.all()
+    latest = File.objects.filter(latest=True)
+    q = request.GET.get("q")
+
+    if q != "" and q is not None:
+        print("there is a query")
+        file_list = latest.filter(file_name__icontains=q)
+    else:
+        q = ""
+        print("there is not a query")
+        file_list = latest.order_by("file_name")
+
     context = {
+        "query": q,
         "file_list": file_list,
-        "file_tag_list": file_tag_list,
     }
     return render(request, "document_tracker/index.html", context)
 
 
-@login_required(redirect_field_name="auth", login_url="login/")
-def search_view(request, search_term):
-    if request.user.is_authenticated:
-        file_list = File.objects.filter(file_name__icontains=search_term).order_by(
-            "file_name"
-        )
-        file_tag_list = FileTag.objects.all()
-        context = {
-            "file_list": file_list,
-            "file_tag_list": file_tag_list,
-        }
-        return render(request, "document_tracker/index.html", context)
-    else:
-        return render(request, "document_tracker/login.html")
+# @login_required(redirect_field_name="auth", login_url="login/")
+# def search_view(request, search_term):
+#     if request.user.is_authenticated:
+#         file_list = File.objects.filter(file_name__icontains=search_term).order_by(
+#             "file_name"
+#         )
+#         file_tag_list = FileTag.objects.all()
+#         context = {
+#             "file_list": file_list,
+#             "file_tag_list": file_tag_list,
+#         }
+#         return render(request, "document_tracker/index.html", context)
+#     else:
+#         return render(request, "document_tracker/login.html")
 
 
 @login_required(redirect_field_name="auth", login_url="login/")
