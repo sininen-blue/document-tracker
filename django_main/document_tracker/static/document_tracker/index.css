@@ -340,7 +340,7 @@ span {
   .ellipsis-ctn a:hover {
     background-color: #f1f1f1;
   }
-  .ellipsis:focus + .ellipsis-ctn {
+  .ellipsis:focus + .ellipsis-ctn, .ellipsis-ctn:hover {
     display: block;
   }
   .ellipsis {
