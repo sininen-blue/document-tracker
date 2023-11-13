@@ -49,11 +49,9 @@ def index(request):
     q = request.GET.get("q")
 
     if q != "" and q is not None:
-        print("there is a query")
         file_list = latest.filter(file_name__icontains=q)
     else:
         q = ""
-        print("there is not a query")
         file_list = latest.order_by("file_name")
 
     context = {
