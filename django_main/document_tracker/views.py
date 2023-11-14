@@ -44,8 +44,10 @@ def logout_view(request):
 
 @login_required(redirect_field_name="auth", login_url="login/")
 def index(request):
+    current_user = request.user.username
     file_list = File.objects.all()
     latest = File.objects.filter(latest=True)
+
     q = request.GET.get("q")
 
     if q != "" and q is not None:
@@ -56,25 +58,10 @@ def index(request):
 
     context = {
         "query": q,
+        "user": current_user,
         "file_list": file_list,
     }
     return render(request, "document_tracker/index.html", context)
-
-
-# @login_required(redirect_field_name="auth", login_url="login/")
-# def search_view(request, search_term):
-#     if request.user.is_authenticated:
-#         file_list = File.objects.filter(file_name__icontains=search_term).order_by(
-#             "file_name"
-#         )
-#         file_tag_list = FileTag.objects.all()
-#         context = {
-#             "file_list": file_list,
-#             "file_tag_list": file_tag_list,
-#         }
-#         return render(request, "document_tracker/index.html", context)
-#     else:
-#         return render(request, "document_tracker/login.html")
 
 
 @login_required(redirect_field_name="auth", login_url="login/")
