@@ -84,13 +84,10 @@
                                             <td>{{ file.version_number }}</td>
                                             <td>{{ file.version_notes }}</td>
                                 <td>
-                                    <div class="btn">
-                                        <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                        <div class="ellipsis-ctn ctn-left-center-pos">
-                                            <a href="#">Rename</a>
-                                            <a href="#">Delete</a>
-                                            <a href="#">File Info</a>
-                                        </div>
+                                    <div class="btn-container">
+                                        <button><i class="fas fa-edit lime-green-color"></i></button>
+                                        <button><i class="fas fa-trash-alt red-color"></i></button>
+                                        <button><i class="fas fa-info-circle black-color"></i></button>
                                     </div>
                                 </td>
                                             {% endfor %}

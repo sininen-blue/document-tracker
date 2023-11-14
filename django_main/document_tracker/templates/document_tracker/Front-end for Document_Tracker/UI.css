@@ -309,42 +309,28 @@ span {
     transform: rotate(180deg);
  }
 
-.btn {
+.btn-container {
     background: none;
     border: none;
     position: relative;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
   }
-  .btn .fas {
-    font-size: 24px;
+  .btn-container .fas {
+    font-size: 20px;
   }
-  .ellipsis-ctn {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+  .btn-container button {
+    text-align: center;
+    margin-bottom: 10px;
   }
-  .ellipsis-ctn.ctn-left-center-pos {
-    right: 100%;
-    top: 50%;
-    transform: translateY(-50%);
+  .lime-green-color {
+    color: #aadca7;
   }
-  .ellipsis-ctn a {
+  .red-color {
+    color: red;
+  }
+  .black-color  {
     color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  .ellipsis-ctn a:hover {
-    background-color: #f1f1f1;
-  }
-  .ellipsis:focus + .ellipsis-ctn {
-    display: block;
-  }
-  .ellipsis {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
   }
