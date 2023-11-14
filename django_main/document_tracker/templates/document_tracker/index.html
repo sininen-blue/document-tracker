@@ -14,7 +14,7 @@
         <div class="container">
             <div class="header"><h2>DOCTRACKER</h2>
                 <div class="user-btn">
-                    <p>User &nbsp;<button><i class="fas fa-user-circle"></i></button></p>
+                    <p>{{ user }} &nbsp;<button><i class="fas fa-user-circle"></i></button></p>
                     <div class="user-content">
                         <a href="{% url 'document_tracker:logout_view' %}">Sign Out</a>
                     </div>
