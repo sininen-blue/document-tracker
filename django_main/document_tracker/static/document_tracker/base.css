@@ -1,0 +1,64 @@
+body {
+    font-family: sans-serif;
+    background-color: #303030;
+    color: #eaeaea;
+
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #BAFF39;
+
+    padding: 20px 30px;
+}
+
+main {
+    max-width: 700px;
+    width: fit-content;
+    margin-inline: auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: #a5a5a5;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 8px;
+}
+
+input[type="text"] {
+    width: 400px;
+}
+
+button {
+    width: 100px;
+    padding: 5px;
+
+    font-size: 14px;
+
+    background-color: #baff39;
+    border: solid 1px #baff39;
+    box-shadow: 0 4px #578a1c;
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px #578a1c;
+}
+
+table td:nth-child(1) {
+    text-align: right;
+    padding: 4px 5px;
+    color: #a5a5a5;
+}
+
+.passive {
+    color: #a5a5a5;
+}

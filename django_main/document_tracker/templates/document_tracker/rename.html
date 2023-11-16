@@ -1,5 +1,12 @@
+{% extends "document_tracker/base.html" %}
+{% block title %}Rename File{% endblock %}
+
+{% block content %}
+<h2>Rename File</h2>
+<p>Current Name: {{ file.file_name }}</p>
 <form action="{% url 'document_tracker:rename_file' file.id %}" method="post">
   {% csrf_token %}
   <input id="rename" name="rename" type="text" placeholder="new file name">
   <input type="submit" value="submit">
 </form>
+{% endblock %}

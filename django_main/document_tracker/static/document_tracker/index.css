@@ -5,6 +5,7 @@
     padding: 0;
 }
 body {
+    font-family: sans-serif;
     background: #303030;
     overflow: hidden;
 }
@@ -223,6 +224,7 @@ span {
 }
 .table-container table {
     width: 100%;
+    height: 100%;
     border-collapse: collapse;
 }
 .table-header {
