@@ -82,7 +82,13 @@
                                         {% for file in file_list %}
                                         <tr>
                                             <td>{{ file.file_name }}</td>
-                                            <td>temp tags</td>
+
+                                            <td>
+                                            {% for file_tag in file.tags.all %}
+                                            <p>{{ file_tag.tag.title }}</p>
+                                            {% endfor%}
+                                            </td>
+
                                             <td>{{ file.created_by }}</td>
                                             <td>{{ file.last_modified_by }}</td>
                                             <td>{{ file.created_date }}</td>
