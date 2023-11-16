@@ -53,10 +53,7 @@
                                 <div class="title">Document</div>
                                 <!-- TODO -->
                                 <div class="search-bar">
-                                    <form>
-
-                                        <input id="search" type="search" name="q" value="{{ query }}" class="search-input" placeholder="Search">
-                                    </form>
+                                    <input type="text" class="search-input" placeholder="Search" required/>
                                     <i class="fas fa-search search-icon"></i>
                                 </div>
                             </div>
@@ -83,28 +80,18 @@
                                         {% for file in file_list %}
                                         <tr>
                                             <td>{{ file.file_name }}</td>
-
-                                            <td> <!-- should turn these into links at some point -->
-                                                {% for file_tag in file.tags.all %}
-                                                <p>{{ file_tag.tag.title }}</p>
-                                                {% endfor %}
-                                            </td>
-
+                                            <td>temp tags</td>
                                             <td>{{ file.created_by }}</td>
-                                            <td>{{ file.last_mobified_by }}</td>
+                                            <td>{{ file.last_modified_by }}</td>
                                             <td>{{ file.created_date }}</td>
                                             <td>{{ file.last_modified_date }}</td>
                                             <td>{{ file.version_number }}</td>
                                             <td>{{ file.version_notes }}</td>
                                             <td>
-                                                <div class="btn">
-                                                    <button class="ellipsis"><i class="fas fa-ellipsis-v"></i></button>
-                                                    <div class="ellipsis-ctn ctn-left-center-pos">
-                                                        <a href="{% url 'document_tracker:export_file' file.id %}">Export</a>
-                                                        <a href="{% url 'document_tracker:rename_file' file.id %}">Rename</a>
-                                                        <a href="{% url 'document_tracker:delete_file' file.id %}">Delete</a>
-                                                        <a href="{% url 'document_tracker:detail' file.id %}">File Info</a>
-                                                    </div>
+                                                <div class="btn-container">
+                                                    <button onclick="location.href='/file/{{file.id}}/rename'"><i class="fas fa-edit lime-green-color"></i></button>
+                                                    <button onclick="location.href='/file/{{file.id}}/delete'"><i class="fas fa-trash-alt red-color"></i></button>
+                                                    <button onclick="location.href='/file/{{file.id}}'"><i class="fas fa-info-circle black-color"></i></button>
                                                 </div>
                                             </td>
                                             {% endfor %}
