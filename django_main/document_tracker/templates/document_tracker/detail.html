@@ -1,20 +1,57 @@
-<!DOCTYPE html>
-<html>
+{% extends "document_tracker/base.html" %}
+{% block title %}Rename File{% endblock %}
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css">
-</head>
+{% block content %}
+<h1>File Information</h1>
+<table>
+  <tr>
+    <td>File Name</td>
+    <td>{{ file.file_name }}</td>
+  </tr>
+  <tr>
+    <td>Created Date</td>
+    <td>{{ file.created_date }}</td>
+  </tr>
+  <tr>
+    <td>Last Modified Date</td>
+    <td>{{ file.last_modified_date }}</td>
+  </tr>
+  <tr>
+    <td>Created By</td>
+    <td>{{ file.created_by }}</td>
+  </tr>
+  <tr>
+    <td>Last Modified By</td>
+    <td>{{ file.last_modified_by }}</td>
+  </tr>
+  <tr>
+    <td>Version Number</td>
+    <td>{{ file.version_number }}</td>
+  </tr>
+  <tr>
+    <td>Version Notes</td>
+    <td>{{ file.version_notes }}</td>
+  </tr>
+</table>
 
-<body>
-
+<h2>Add Tags?</h2>
 <form action="{% url 'document_tracker:add_tag' file.id %}" method="post">
   {% csrf_token %}
-  <label for="tag_name">Add Tag:</label>
+  <label for="tag_name">Tag Name:</label>
   <input type="text" id="tag_name" name="tag_name" required>
-  <input type="submit" value="AddedTag">
+  <button type="submit">Add Tag</button>
 </form>
 
-</body>
+<h2>Current Tags</h2>
 
-</html>
+{% if file.tags.all %}
+<ul>
+  {% for file_tag in file.tags.all %}
+  <li>{{ file_tag.tag.title }}</li>
+  {% endfor%}
+</ul>
+{% else %}
+  <p class="passive">This file currently has no associated tags</p>
+{% endif %}
+
+{% endblock %}

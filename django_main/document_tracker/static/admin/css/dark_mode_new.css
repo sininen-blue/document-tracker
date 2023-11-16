@@ -36,7 +36,7 @@
 
 
 html[data-theme="dark"] {
-    --primary: #4E4E4E;
+    --primary: #BAFF39;
     --primary-fg: black;
 
     --secondary: #4E4E4E;
@@ -48,8 +48,6 @@ html[data-theme="dark"] {
 
     --breadcrumbs-link-fg: black;
     --breadcrumbs-bg: var(--primary);
-
-    --header-link-color: white;
 
     --link-fg: #81d4fa;
     --link-hover-color: #4ac1f7;
