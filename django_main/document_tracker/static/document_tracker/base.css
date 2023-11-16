@@ -13,10 +13,25 @@ header {
     padding: 20px 30px;
 }
 
+header a {
+    margin-left: 20px;
+
+    text-decoration: none;
+    color: #303030;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
 main {
     max-width: 700px;
     width: fit-content;
     margin-inline: auto;
+    margin-top: 30px;
+    
+    background-color: #444444;
+    box-shadow: 0 5px 13px #212121;
+    padding: 30px;
 }
 
 form {

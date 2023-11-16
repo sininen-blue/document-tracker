@@ -53,7 +53,9 @@
                                 <div class="title">Document</div>
                                 <!-- TODO -->
                                 <div class="search-bar">
-                                    <input type="text" class="search-input" placeholder="Search" required/>
+                                    <form>
+                                        <input id="search" type="search" name="q" value="{{ query }}" class="search-input" placeholder="Search">
+                                    </form>
                                     <i class="fas fa-search search-icon"></i>
                                 </div>
                             </div>
