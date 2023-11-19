@@ -77,3 +77,7 @@ table td:nth-child(1) {
 .passive {
     color: #a5a5a5;
 }
+
+.error {
+    color: #d18888;
+}
