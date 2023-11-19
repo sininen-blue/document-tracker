@@ -99,6 +99,7 @@ def import_file(request):
                 version_number=1,
                 version_notes=uploaded_version_notes,
             )
+
         return redirect("/")
     else:
         return render(request, "document_tracker/import_file.html")
@@ -119,11 +120,22 @@ def export_file(request, file_id):
 
 def rename_file(request, file_id):
     file = File.objects.get(pk=file_id)
-    if request.method == "POST":
-        file.file_name = request.POST["rename"]
-        file.save()
 
-        return redirect("/")
+    if request.method == "POST":
+        new_file_name = request.POST["rename"]
+        existing_file_names = File.objects.filter(latest=True)
+
+        if existing_file_names.filter(file_name__exact=new_file_name).exists():
+            # if there is already a file that exists with that name
+            context = {
+                "file": file,
+                "error": "File name already used, please choose different one",
+            }
+            return render(request, "document_tracker/rename.html", context)
+        else:
+            file.file_name = new_file_name
+            file.save()
+            return redirect("/")
 
     return render(request, "document_tracker/rename.html", {"file": file})
 
