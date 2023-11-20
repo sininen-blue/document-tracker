@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>  
-        <input type="checkbox" name="" id="check">
+        <input class="menu" type="checkbox" name="" id="check">
 
         <div class="sidebar-container">
             <label for="check">
@@ -52,6 +52,20 @@
                             <div class="table-header">
                                 <div class="title">Document</div>
                                 <!-- TODO -->
+
+                                {% if tag_list %}
+                                <div class="filters">
+                                <form class="tag-form">
+                                    {% for tag in tag_list %}
+                                    <input type="checkbox" id="{{ tag.title }}" name="active-filters" value="{{ tag.title }}">
+                                    <label class="tag-label" for="{{ tag.title }}">{{ tag.title }}</label>
+                                    {% endfor %}
+                                    <button type="submit">filter</button>
+                                <form>
+                                </div>
+                                {% endif %}
+
+
                                 <div class="search-bar">
                                     <form>
                                         <input id="search" type="search" name="q" value="{{ query }}" class="search-input" placeholder="Search">

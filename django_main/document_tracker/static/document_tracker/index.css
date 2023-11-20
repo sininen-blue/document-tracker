@@ -146,7 +146,7 @@ body {
     cursor: pointer;
     text-align: center;
 }
-input[type="checkbox"] {
+.menu {
     display: none;
     appearance: none;
     visibility: hidden
@@ -334,4 +334,23 @@ tr:nth-child(even) {
 }
 .black-color  {
     color: black;
+}
+.tag-form {
+    display: flex;
+}
+.filters {
+    width: 400px;
+}
+.tag-label {
+    display: block;
+    padding-right: 5px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50px;
+    transition: max-width 0.5s;
+}
+.tag-label:hover {
+    max-width: 100%;
 }

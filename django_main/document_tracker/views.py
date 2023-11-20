@@ -46,6 +46,7 @@ def logout_view(request):
 def index(request):
     current_user = request.user.username
     file_list = File.objects.all()
+    tag_list = Tag.objects.all()
     latest = File.objects.filter(latest=True)
 
     q = request.GET.get("q")
@@ -60,6 +61,7 @@ def index(request):
         "query": q,
         "user": current_user,
         "file_list": file_list,
+        "tag_list": tag_list,
     }
     return render(request, "document_tracker/index.html", context)
 
