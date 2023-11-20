@@ -347,7 +347,7 @@ tr:nth-child(even) {
 
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis "-";
     max-width: 50px;
     transition: max-width 0.5s;
 }

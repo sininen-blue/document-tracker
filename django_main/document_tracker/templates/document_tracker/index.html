@@ -56,11 +56,18 @@
                                 {% if tag_list %}
                                 <div class="filters">
                                 <form class="tag-form">
-                                    {% for tag in tag_list %}
-                                    <input type="checkbox" id="{{ tag.title }}" name="active-filters" value="{{ tag.title }}">
-                                    <label class="tag-label" for="{{ tag.title }}">{{ tag.title }}</label>
-                                    {% endfor %}
                                     <button type="submit">filter</button>
+                                    {% for tag in tag_list %}
+                                        <input type="checkbox" id="{{ tag.title }}" name="active-filters" value="{{ tag.title }}" 
+                                        {% for filter in active_filters %}
+                                        {% if tag.title == filter %}
+                                        checked
+                                        {% endif %}
+                                        {% endfor %}
+                                        >
+                                        <label class="tag-label" for="{{ tag.title }}">{{ tag.title }}</label>
+
+                                    {% endfor %}
                                 <form>
                                 </div>
                                 {% endif %}
