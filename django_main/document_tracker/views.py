@@ -151,7 +151,6 @@ def rename_file(request, file_id):
             past_file_versions = File.objects.exclude(pk=file_id).filter(
                 file_name=file.file_name
             )
-            print("\n\n\n\n", past_file_versions)
             for past_file in past_file_versions:
                 past_file.file_name = new_file_name
                 past_file.save()
