@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 import os
 
 from .models import File, Tag, FileTag
@@ -47,18 +48,27 @@ def index(request):
     current_user = request.user.username
     file_list = File.objects.all()
     tag_list = Tag.objects.all()
-    latest = File.objects.filter(latest=True)
 
+    # get queries
     q = request.GET.get("q")
+    active_filters = request.GET.getlist("active-filters")
 
     if q != "" and q is not None:
-        file_list = latest.filter(file_name__icontains=q)
+        file_list = file_list.filter(file_name__icontains=q)
     else:
         q = ""
-        file_list = latest.order_by("file_name")
+        file_list = file_list.filter(latest=True).order_by("file_name")
+
+    if active_filters != "" and active_filters is not None:
+        q_object = Q()
+        for filter in active_filters:
+            q_object = Q(tags__tag__title=filter)
+
+        file_list = file_list.filter(q_object)
 
     context = {
         "query": q,
+        "active_filters": active_filters,
         "user": current_user,
         "file_list": file_list,
         "tag_list": tag_list,
