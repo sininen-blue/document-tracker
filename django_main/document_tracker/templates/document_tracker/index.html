@@ -88,7 +88,14 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 300px;">File Name
-                                                <button onclick="toggleFilter()" id="filterButton"><i class="fa fa-caret-down filter-icon"></i></button>
+                                                <form>
+                                                    <input type="hidden" name="q" value="{{ query }}">
+                                                    {% for filter in active_filters %}
+                                                    <input type="hidden" name="active-filters" value="{{ filter }}">
+                                                    {% endfor %}
+                                                    <button type="submit" name="sort" value="file_name"><i class="fa fa-caret-down"></i></button>
+                                                </form>
+                                                <!-- <button onclick="toggleFilter()" id="filterButton"><i class="fa fa-caret-down filter-icon"></i></button> -->
                                             </th>
                                             <th style="width: 150px;">Tags</th>
                                             <th style="max-width: 75px;">Created By</th>

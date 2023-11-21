@@ -53,6 +53,7 @@ def index(request):
     # get queries
     q = request.GET.get("q")
     active_filters = request.GET.getlist("active-filters")
+    sort_type = request.GET.get("sort")
 
     if q != "" and q is not None:
         file_list = file_list.filter(file_name__icontains=q)
