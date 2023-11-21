@@ -57,7 +57,7 @@ def index(request):
         file_list = file_list.filter(file_name__icontains=q)
     else:
         q = ""
-        file_list = file_list.filter(latest=True).order_by("file_name")
+        file_list = file_list.filter(latest=True)
 
     if active_filters != "" and active_filters is not None:
         q_object = Q()
@@ -65,6 +65,8 @@ def index(request):
             q_object = Q(tags__tag__title=filter)
 
         file_list = file_list.filter(q_object)
+
+    file_list = file_list.order_by("-created_date")
 
     context = {
         "query": q,
