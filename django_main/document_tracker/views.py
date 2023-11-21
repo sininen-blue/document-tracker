@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 import os
+from datetime import datetime
 
 from .models import File, Tag, FileTag
 
@@ -147,7 +148,16 @@ def rename_file(request, file_id):
             }
             return render(request, "document_tracker/rename.html", context)
         else:
+            past_file_versions = File.objects.exclude(pk=file_id).filter(
+                file_name=file.file_name
+            )
+            print("\n\n\n\n", past_file_versions)
+            for past_file in past_file_versions:
+                past_file.file_name = new_file_name
+                past_file.save()
+
             file.file_name = new_file_name
+            file.last_modified_date = datetime.now()
             file.save()
             return redirect("/")
 
