@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 import os
-from datetime import datetime
+from django.utils import timezone
 
 from .models import File, Tag, FileTag
 
@@ -156,7 +156,7 @@ def rename_file(request, file_id):
                 past_file.save()
 
             file.file_name = new_file_name
-            file.last_modified_date = datetime.now()
+            file.last_modified_date = timezone.now()
             file.save()
             return redirect("/")
 
