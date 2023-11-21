@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 import os
+from django.utils import timezone
 
 from .models import File, Tag, FileTag
 
@@ -57,7 +58,7 @@ def index(request):
         file_list = file_list.filter(file_name__icontains=q)
     else:
         q = ""
-        file_list = file_list.filter(latest=True).order_by("file_name")
+        file_list = file_list.filter(latest=True)
 
     if active_filters != "" and active_filters is not None:
         q_object = Q()
@@ -65,6 +66,8 @@ def index(request):
             q_object = Q(tags__tag__title=filter)
 
         file_list = file_list.filter(q_object)
+
+    file_list = file_list.order_by("-created_date")
 
     context = {
         "query": q,
@@ -145,7 +148,15 @@ def rename_file(request, file_id):
             }
             return render(request, "document_tracker/rename.html", context)
         else:
+            past_file_versions = File.objects.exclude(pk=file_id).filter(
+                file_name=file.file_name
+            )
+            for past_file in past_file_versions:
+                past_file.file_name = new_file_name
+                past_file.save()
+
             file.file_name = new_file_name
+            file.last_modified_date = timezone.now()
             file.save()
             return redirect("/")
 

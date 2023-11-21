@@ -4,54 +4,60 @@
 {% block content %}
 <h1>File Information</h1>
 <table>
-  <tr>
-    <td>File Name</td>
-    <td>{{ file.file_name }}</td>
-  </tr>
-  <tr>
-    <td>Created Date</td>
-    <td>{{ file.created_date }}</td>
-  </tr>
-  <tr>
-    <td>Last Modified Date</td>
-    <td>{{ file.last_modified_date }}</td>
-  </tr>
-  <tr>
-    <td>Created By</td>
-    <td>{{ file.created_by }}</td>
-  </tr>
-  <tr>
-    <td>Last Modified By</td>
-    <td>{{ file.last_modified_by }}</td>
-  </tr>
-  <tr>
-    <td>Version Number</td>
-    <td>{{ file.version_number }}</td>
-  </tr>
-  <tr>
-    <td>Version Notes</td>
-    <td>{{ file.version_notes }}</td>
-  </tr>
+    <tr>
+        <td>File Name</td>
+        <td>{{ file.file_name }}</td>
+    </tr>
+    <tr>
+        <td>Created Date</td>
+        <td>{{ file.created_date }}</td>
+    </tr>
+    <tr>
+        <td>Last Modified Date</td>
+        <td>{{ file.last_modified_date }}</td>
+    </tr>
+    <tr>
+        <td>Created By</td>
+        <td>{{ file.created_by }}</td>
+    </tr>
+    <tr>
+        <td>Last Modified By</td>
+        <td>{{ file.last_modified_by }}</td>
+    </tr>
+    <tr>
+        <td>Version Number</td>
+        <td>{{ file.version_number }}</td>
+    </tr>
+    <tr>
+        <td>Version Notes</td>
+        <td>{{ file.version_notes }}</td>
+    </tr>
 </table>
 
 <h2>Add Tags?</h2>
 <form action="{% url 'document_tracker:add_tag' file.id %}" method="post">
-  {% csrf_token %}
-  <label for="tag_name">Tag Name:</label>
-  <input type="text" id="tag_name" name="tag_name" required>
-  <button type="submit">Add Tag</button>
+    {% csrf_token %}
+    <label for="tag_name">Tag Name:</label>
+    <input type="text" id="tag_name" name="tag_name" required>
+    <button type="submit">Add Tag</button>
 </form>
 
 <h2>Current Tags</h2>
 
 {% if file.tags.all %}
 <ul>
-  {% for file_tag in file.tags.all %}
-  <li>{{ file_tag.tag.title }}</li>
-  {% endfor%}
-</ul>
+    {% for file_tag in file.tags.all %}
+    <li>
+        <div style="display:flex;">
+            <a class="error" href="{% url 'document_tracker:remove_tag' file_tag.id %}">
+                <i class="fas fa-trash"></i>
+            </a>
+            <p>{{ file_tag.tag.title }}</p>
+        <div>
+    </li>
+    {% endfor%}
+    </ul>
 {% else %}
-  <p class="passive">This file currently has no associated tags</p>
+<p class="passive">This file currently has no associated tags</p>
 {% endif %}
-
 {% endblock %}

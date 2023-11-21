@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
         {% load static %}
+        <link rel="stylesheet" href="{% static 'document_tracker/font-awesome-all.min.css' %}">
         <link rel="stylesheet" href="{% static 'document_tracker/index.css' %}">
         <title>DocTrack.com</title>
     </head>
@@ -51,13 +51,11 @@
                         <th colspan="9">
                             <div class="table-header">
                                 <div class="title">Document</div>
-                                <!-- TODO -->
 
                                 {% if tag_list %}
                                 <div class="filters filter-dropdown">
                                     <i class="fas fa-filter"></i>
 
-                                <!-- should probably add a search for filters -->
                                 <form class="tag-form filter-dropdown-content">
                                     <button class="filter-button" type="submit">filter</button>
 
