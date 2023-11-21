@@ -56,6 +56,7 @@ def index(request):
     if q != "" and q is not None:
         file_list = file_list.filter(file_name__icontains=q)
     else:
+        q = ""
         file_list = file_list.filter(latest=True).order_by("file_name")
 
     if active_filters != "" and active_filters is not None:

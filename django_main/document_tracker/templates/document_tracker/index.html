@@ -54,19 +54,23 @@
                                 <!-- TODO -->
 
                                 {% if tag_list %}
-                                <div class="filters">
-                                <form class="tag-form">
-                                    <button type="submit">filter</button>
+                                <div class="filters filter-dropdown">
+                                    <i class="fas fa-filter"></i>
+
+                                <!-- should probably add a search for filters -->
+                                <form class="tag-form filter-dropdown-content">
+                                    <button class="filter-button" type="submit">filter</button>
+
                                     {% for tag in tag_list %}
+                                    <div class="filter">
                                         <input type="checkbox" id="{{ tag.title }}" name="active-filters" value="{{ tag.title }}" 
                                         {% for filter in active_filters %}
                                         {% if tag.title == filter %}
                                         checked
                                         {% endif %}
-                                        {% endfor %}
-                                        >
-                                        <label class="tag-label" for="{{ tag.title }}">{{ tag.title }}</label>
-
+                                        {% endfor %}>
+                                        <label for="{{ tag.title }}">{{ tag.title }}</label>
+                                    </div>
                                     {% endfor %}
                                 <form>
                                 </div>
