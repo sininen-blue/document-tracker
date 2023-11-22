@@ -68,11 +68,15 @@ def index(request):
 
         file_list = file_list.filter(q_object)
 
-    file_list = file_list.order_by("-created_date")
+    if sort_type == "" or sort_type is None:
+        sort_type = "file_name"
+
+    file_list = file_list.order_by(sort_type)
 
     context = {
         "query": q,
         "active_filters": active_filters,
+        "sort_type": sort_type,
         "user": current_user,
         "file_list": file_list,
         "tag_list": tag_list,

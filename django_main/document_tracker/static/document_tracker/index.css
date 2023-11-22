@@ -417,3 +417,6 @@ tr:nth-child(even) {
 .filter:hover {
     background: #717171;
 }
+.passive {
+    color: hsl(0.0, 0.0%, 50%);
+}
