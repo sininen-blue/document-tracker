@@ -79,6 +79,7 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 300px;">
+                                                <div>
                                                 <p>File Name</p>
                                                 <form>
                                                     <input type="hidden" name="q" value="{{ query }}">
@@ -94,9 +95,11 @@
                                                         <button class="passive" type="submit" name="sort" value="file_name"><i class="fa fa-caret-down"></i></button>
                                                     {% endif %}
                                                 </form>
+                                                </div>
                                             </th>
                                             <th style="width: 150px;">Tags</th>
                                             <th style="max-width: 75px;">
+                                                <div>
                                                 <p>Created By</p>
                                                 <form>
                                                     <input type="hidden" name="q" value="{{ query }}">
@@ -112,8 +115,10 @@
                                                         <button class="passive" type="submit" name="sort" value="created_by"><i class="fa fa-caret-down"></i></button>
                                                     {% endif %}
                                                 </form>
+                                                </div>
                                             </th>
                                             <th style="max-width: 75px;">
+                                                <div>
                                                 <p>Last Modified By</p>
                                                 <form>
                                                     <input type="hidden" name="q" value="{{ query }}">
@@ -129,8 +134,10 @@
                                                         <button class="passive" type="submit" name="sort" value="last_modified_by"><i class="fa fa-caret-down"></i></button>
                                                     {% endif %}
                                                 </form>
+                                                </div>
                                             </th>
                                             <th style="max-width: 50px;">
+                                                <div>
                                                 <p>Created</p>
                                                 <form>
                                                     <input type="hidden" name="q" value="{{ query }}">
@@ -145,8 +152,11 @@
                                                     {% else %} 
                                                         <button class="passive" type="submit" name="sort" value="created_date"><i class="fa fa-caret-down"></i></button>
                                                     {% endif %}
+                                                    </form>
+                                                </div>
                                             </th>
                                             <th style="max-width: 50px;">
+                                                <div> 
                                                 <p>Last Modified</p>
                                                 <form>
                                                     <input type="hidden" name="q" value="{{ query }}">
@@ -161,6 +171,8 @@
                                                     {% else %} 
                                                         <button class="passive" type="submit" name="sort" value="last_modified_date"><i class="fa fa-caret-down"></i></button>
                                                     {% endif %}
+                                                </form>
+                                                </div>
                                             </th>
                                             <th style="width: 75px;">Version</th>
                                             <th style="max-width: 200px;">Version Notes</th>

@@ -294,6 +294,14 @@ span {
     height: 40px;
     z-index: 1;
 }
+.table-scroll th div {
+    display: flex;
+    justify-content: center;
+}
+.table-scroll th div p {
+    margin-right: 4px;
+}
+
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -418,5 +426,5 @@ tr:nth-child(even) {
     background: #717171;
 }
 .passive {
-    color: hsl(0.0, 0.0%, 50%);
+    color: hsl(0.0, 0.0%, 60%);
 }
