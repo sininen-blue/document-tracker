@@ -30,18 +30,9 @@
             </label>
             <div class="head"><h1>Menu</h1></div>
             <div class="import">
-                <!-- don't know why the url namespacing it doesn't work -->
                 <button onclick="location.href='/file/import'" type="button" class="import-btn">Import</button>
             </div>
 
-            <div class="split-btn">
-                <button type="button" class="export-btn" onclick="toggleExportOptions()">Export</button>
-                <!-- sidebar -->
-                <div id="exportOptions" class="dropdown">
-                    <button onclick="exportToPDF()">PDF</button>
-                    <button onclick="exportToWord()">Word</button>
-                </div>
-            </div>
         </div>
 
         <div class="table-container">
@@ -87,14 +78,102 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th style="width: 300px;">File Name
-                                                <button onclick="toggleFilter()" id="filterButton"><i class="fa fa-caret-down filter-icon"></i></button>
+                                            <th style="width: 300px;">
+                                                <div>
+                                                <p>File Name</p>
+                                                <form>
+                                                    <input type="hidden" name="q" value="{{ query }}">
+                                                    {% for filter in active_filters %}
+                                                        <input type="hidden" name="active-filters" value="{{ filter }}">
+                                                    {% endfor %}
+
+                                                    {% if sort_type == "file_name" %}
+                                                        <button type="submit" name="sort" value="-file_name"><i class="fa fa-caret-up"></i></button>
+                                                    {% elif sort_type == "-file_name" %}
+                                                        <button type="submit" name="sort" value="file_name"><i class="fa fa-caret-down"></i></button>
+                                                    {% else %}
+                                                        <button class="passive" type="submit" name="sort" value="file_name"><i class="fa fa-caret-down"></i></button>
+                                                    {% endif %}
+                                                </form>
+                                                </div>
                                             </th>
                                             <th style="width: 150px;">Tags</th>
-                                            <th style="max-width: 75px;">Created By</th>
-                                            <th style="max-width: 75px;">Last Modified By</th>
-                                            <th style="max-width: 50px;">Created</th>
-                                            <th style="max-width: 50px;">Last Modified</th>
+                                            <th style="max-width: 75px;">
+                                                <div>
+                                                <p>Created By</p>
+                                                <form>
+                                                    <input type="hidden" name="q" value="{{ query }}">
+                                                    {% for filter in active_filters %}
+                                                        <input type="hidden" name="active-filters" value="{{ filter }}">
+                                                    {% endfor %}
+
+                                                    {% if sort_type == "created_by" %}
+                                                        <button type="submit" name="sort" value="-created_by"><i class="fa fa-caret-up"></i></button>
+                                                    {% elif sort_type == "-created_by" %}
+                                                        <button type="submit" name="sort" value="created_by"><i class="fa fa-caret-down"></i></button>
+                                                    {% else %} 
+                                                        <button class="passive" type="submit" name="sort" value="created_by"><i class="fa fa-caret-down"></i></button>
+                                                    {% endif %}
+                                                </form>
+                                                </div>
+                                            </th>
+                                            <th style="max-width: 75px;">
+                                                <div>
+                                                <p>Last Modified By</p>
+                                                <form>
+                                                    <input type="hidden" name="q" value="{{ query }}">
+                                                    {% for filter in active_filters %}
+                                                        <input type="hidden" name="active-filters" value="{{ filter }}">
+                                                    {% endfor %}
+
+                                                    {% if sort_type == "last_modified_by" %}
+                                                        <button type="submit" name="sort" value="-last_modified_by"><i class="fa fa-caret-up"></i></button>
+                                                    {% elif sort_type == "-last_modified_by" %}
+                                                        <button type="submit" name="sort" value="last_modified_by"><i class="fa fa-caret-down"></i></button>
+                                                    {% else %} 
+                                                        <button class="passive" type="submit" name="sort" value="last_modified_by"><i class="fa fa-caret-down"></i></button>
+                                                    {% endif %}
+                                                </form>
+                                                </div>
+                                            </th>
+                                            <th style="max-width: 50px;">
+                                                <div>
+                                                <p>Created</p>
+                                                <form>
+                                                    <input type="hidden" name="q" value="{{ query }}">
+                                                    {% for filter in active_filters %}
+                                                        <input type="hidden" name="active-filters" value="{{ filter }}">
+                                                    {% endfor %}
+
+                                                    {% if sort_type == "created_date" %}
+                                                        <button type="submit" name="sort" value="-created_date"><i class="fa fa-caret-up"></i></button>
+                                                    {% elif sort_type == "-created_date" %}
+                                                        <button type="submit" name="sort" value="created_date"><i class="fa fa-caret-down"></i></button>
+                                                    {% else %} 
+                                                        <button class="passive" type="submit" name="sort" value="created_date"><i class="fa fa-caret-down"></i></button>
+                                                    {% endif %}
+                                                    </form>
+                                                </div>
+                                            </th>
+                                            <th style="max-width: 50px;">
+                                                <div> 
+                                                <p>Last Modified</p>
+                                                <form>
+                                                    <input type="hidden" name="q" value="{{ query }}">
+                                                    {% for filter in active_filters %}
+                                                        <input type="hidden" name="active-filters" value="{{ filter }}">
+                                                    {% endfor %}
+
+                                                    {% if sort_type == "last_modified_date" %}
+                                                        <button type="submit" name="sort" value="-last_modified_date"><i class="fa fa-caret-up"></i></button>
+                                                    {% elif sort_type == "-last_modified_date" %}
+                                                        <button type="submit" name="sort" value="last_modified_date"><i class="fa fa-caret-down"></i></button>
+                                                    {% else %} 
+                                                        <button class="passive" type="submit" name="sort" value="last_modified_date"><i class="fa fa-caret-down"></i></button>
+                                                    {% endif %}
+                                                </form>
+                                                </div>
+                                            </th>
                                             <th style="width: 75px;">Version</th>
                                             <th style="max-width: 200px;">Version Notes</th>
                                             <th style="width: 75px;">Actions</th>
@@ -137,28 +216,5 @@
             </table>
         </div>
     </body>
-
-    <script>
-    function toggleExportOptions() {
-        var exportOptions = document.getElementById('exportOptions');
-        if (exportOptions.style.display === 'block') {
-            exportOptions.style.display = 'none';
-        } else {
-            exportOptions.style.display = 'block'
-        }
-    }
-
-    var filterButton = document.getElementById('filterButton');
-    var filterIcon = document.querySelector('.filter-icon');
-
-    function toggleFilter() {
-        if (filterIcon.classList.contains('up')) {
-            filterIcon.classList.remove('up');
-        } else {
-            filterIcon.classList.add('up');
-        }
-    }
-    </script>
-
 </html>
 
