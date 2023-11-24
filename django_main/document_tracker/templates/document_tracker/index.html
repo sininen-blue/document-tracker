@@ -183,7 +183,7 @@
                                         {% if file_list %}
                                         {% for file in file_list %}
                                         <tr>
-                                            <td>{{ file.file_name }}</td>
+						<td><a href="{% url 'document_tracker:export_file' file.id %}">{{ file.file_name }}</a></td>
 
                                             <td>
                                             {% for file_tag in file.tags.all %}
