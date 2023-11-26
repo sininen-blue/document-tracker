@@ -47,21 +47,21 @@
                                 <div class="filters filter-dropdown">
                                     <i class="fas fa-filter"></i>
 
-                                <form class="tag-form filter-dropdown-content">
-                                    <button class="filter-button" type="submit">filter</button>
+                                    <form class="tag-form filter-dropdown-content">
+                                        <button class="filter-button" type="submit">filter</button>
 
-                                    {% for tag in tag_list %}
-                                    <div class="filter">
-                                        <input type="checkbox" id="{{ tag.title }}" name="active-filters" value="{{ tag.title }}" 
-                                        {% for filter in active_filters %}
-                                        {% if tag.title == filter %}
-                                        checked
-                                        {% endif %}
-                                        {% endfor %}>
-                                        <label for="{{ tag.title }}">{{ tag.title }}</label>
-                                    </div>
-                                    {% endfor %}
-                                <form>
+                                        {% for tag in tag_list %}
+                                        <div class="filter">
+                                            <input type="checkbox" id="{{ tag.title }}" name="active-filters" value="{{ tag.title }}" 
+                                                                                                              {% for filter in active_filters %}
+                                                                                                              {% if tag.title == filter %}
+                                                                                                              checked
+                                                                                                              {% endif %}
+                                                                                                              {% endfor %}>
+                                            <label for="{{ tag.title }}">{{ tag.title }}</label>
+                                        </div>
+                                        {% endfor %}
+                                        <form>
                                 </div>
                                 {% endif %}
 
@@ -80,98 +80,98 @@
                                         <tr>
                                             <th style="width: 300px;">
                                                 <div>
-                                                <p>File Name</p>
-                                                <form>
-                                                    <input type="hidden" name="q" value="{{ query }}">
-                                                    {% for filter in active_filters %}
+                                                    <p>File Name</p>
+                                                    <form>
+                                                        <input type="hidden" name="q" value="{{ query }}">
+                                                        {% for filter in active_filters %}
                                                         <input type="hidden" name="active-filters" value="{{ filter }}">
-                                                    {% endfor %}
+                                                        {% endfor %}
 
-                                                    {% if sort_type == "file_name" %}
+                                                        {% if sort_type == "file_name" %}
                                                         <button type="submit" name="sort" value="-file_name"><i class="fa fa-caret-up"></i></button>
-                                                    {% elif sort_type == "-file_name" %}
+                                                        {% elif sort_type == "-file_name" %}
                                                         <button type="submit" name="sort" value="file_name"><i class="fa fa-caret-down"></i></button>
-                                                    {% else %}
+                                                        {% else %}
                                                         <button class="passive" type="submit" name="sort" value="file_name"><i class="fa fa-caret-down"></i></button>
-                                                    {% endif %}
-                                                </form>
+                                                        {% endif %}
+                                                    </form>
                                                 </div>
                                             </th>
                                             <th style="width: 150px;">Tags</th>
                                             <th style="max-width: 75px;">
                                                 <div>
-                                                <p>Created By</p>
-                                                <form>
-                                                    <input type="hidden" name="q" value="{{ query }}">
-                                                    {% for filter in active_filters %}
+                                                    <p>Created By</p>
+                                                    <form>
+                                                        <input type="hidden" name="q" value="{{ query }}">
+                                                        {% for filter in active_filters %}
                                                         <input type="hidden" name="active-filters" value="{{ filter }}">
-                                                    {% endfor %}
+                                                        {% endfor %}
 
-                                                    {% if sort_type == "created_by" %}
+                                                        {% if sort_type == "created_by" %}
                                                         <button type="submit" name="sort" value="-created_by"><i class="fa fa-caret-up"></i></button>
-                                                    {% elif sort_type == "-created_by" %}
+                                                        {% elif sort_type == "-created_by" %}
                                                         <button type="submit" name="sort" value="created_by"><i class="fa fa-caret-down"></i></button>
-                                                    {% else %} 
+                                                        {% else %} 
                                                         <button class="passive" type="submit" name="sort" value="created_by"><i class="fa fa-caret-down"></i></button>
-                                                    {% endif %}
-                                                </form>
+                                                        {% endif %}
+                                                    </form>
                                                 </div>
                                             </th>
                                             <th style="max-width: 75px;">
                                                 <div>
-                                                <p>Last Modified By</p>
-                                                <form>
-                                                    <input type="hidden" name="q" value="{{ query }}">
-                                                    {% for filter in active_filters %}
+                                                    <p>Last Modified By</p>
+                                                    <form>
+                                                        <input type="hidden" name="q" value="{{ query }}">
+                                                        {% for filter in active_filters %}
                                                         <input type="hidden" name="active-filters" value="{{ filter }}">
-                                                    {% endfor %}
+                                                        {% endfor %}
 
-                                                    {% if sort_type == "last_modified_by" %}
+                                                        {% if sort_type == "last_modified_by" %}
                                                         <button type="submit" name="sort" value="-last_modified_by"><i class="fa fa-caret-up"></i></button>
-                                                    {% elif sort_type == "-last_modified_by" %}
+                                                        {% elif sort_type == "-last_modified_by" %}
                                                         <button type="submit" name="sort" value="last_modified_by"><i class="fa fa-caret-down"></i></button>
-                                                    {% else %} 
+                                                        {% else %} 
                                                         <button class="passive" type="submit" name="sort" value="last_modified_by"><i class="fa fa-caret-down"></i></button>
-                                                    {% endif %}
-                                                </form>
+                                                        {% endif %}
+                                                    </form>
                                                 </div>
                                             </th>
                                             <th style="max-width: 50px;">
                                                 <div>
-                                                <p>Created</p>
-                                                <form>
-                                                    <input type="hidden" name="q" value="{{ query }}">
-                                                    {% for filter in active_filters %}
+                                                    <p>Created</p>
+                                                    <form>
+                                                        <input type="hidden" name="q" value="{{ query }}">
+                                                        {% for filter in active_filters %}
                                                         <input type="hidden" name="active-filters" value="{{ filter }}">
-                                                    {% endfor %}
+                                                        {% endfor %}
 
-                                                    {% if sort_type == "created_date" %}
+                                                        {% if sort_type == "created_date" %}
                                                         <button type="submit" name="sort" value="-created_date"><i class="fa fa-caret-up"></i></button>
-                                                    {% elif sort_type == "-created_date" %}
+                                                        {% elif sort_type == "-created_date" %}
                                                         <button type="submit" name="sort" value="created_date"><i class="fa fa-caret-down"></i></button>
-                                                    {% else %} 
+                                                        {% else %} 
                                                         <button class="passive" type="submit" name="sort" value="created_date"><i class="fa fa-caret-down"></i></button>
-                                                    {% endif %}
+                                                        {% endif %}
                                                     </form>
                                                 </div>
                                             </th>
                                             <th style="max-width: 50px;">
                                                 <div> 
-                                                <p>Last Modified</p>
-                                                <form>
-                                                    <input type="hidden" name="q" value="{{ query }}">
-                                                    {% for filter in active_filters %}
+                                                    <p>Last Modified</p>
+                                                    <form>
+                                                        <input type="hidden" name="q" value="{{ query }}">
+                                                        {% for filter in active_filters %}
                                                         <input type="hidden" name="active-filters" value="{{ filter }}">
-                                                    {% endfor %}
+                                                        {% endfor %}
 
-                                                    {% if sort_type == "last_modified_date" %}
+                                                        {% if sort_type == "last_modified_date" %}
                                                         <button type="submit" name="sort" value="-last_modified_date"><i class="fa fa-caret-up"></i></button>
-                                                    {% elif sort_type == "-last_modified_date" %}
+                                                        {% elif sort_type == "-last_modified_date" %}
                                                         <button type="submit" name="sort" value="last_modified_date"><i class="fa fa-caret-down"></i></button>
-                                                    {% else %} 
+                                                        {% else %} 
                                                         <button class="passive" type="submit" name="sort" value="last_modified_date"><i class="fa fa-caret-down"></i></button>
-                                                    {% endif %}
-                                                </form>
+                                                        {% endif %}
+                                                    </form>
                                                 </div>
                                             </th>
                                             <th style="width: 75px;">Version</th>
@@ -183,12 +183,12 @@
                                         {% if file_list %}
                                         {% for file in file_list %}
                                         <tr>
-						<td><a href="{% url 'document_tracker:export_file' file.id %}">{{ file.file_name }}</a></td>
+                                            <td>{{ file.file_name }}</td>
 
                                             <td>
-                                            {% for file_tag in file.tags.all %}
-                                            <p>{{ file_tag.tag.title }}</p>
-                                            {% endfor%}
+                                                {% for file_tag in file.tags.all %}
+                                                <p>{{ file_tag.tag.title }}</p>
+                                                {% endfor%}
                                             </td>
 
                                             <td>{{ file.created_by }}</td>
@@ -199,15 +199,15 @@
                                             <td>{{ file.version_notes }}</td>
                                             <td>
                                                 <div class="btn-container">
-							<div>
-                                                    <button onclick="location.href='/file/{{file.id}}/rename'"><i class="fas fa-edit lime-green-color"></i></button>
-                                                    <button onclick="location.href='/file/{{file.id}}/delete'"><i class="fas fa-trash-alt red-color"></i></button>
-							</div>
-							<div>
-                                                    <button onclick="location.href='/file/{{file.id}}'"><i class="fas fa-info-circle black-color"></i></button>
-						    <button onclick="location.href='/file/{{file.id}}/export'"><i class="fas fa-file-download"></i></button>
-							</div>
-                                               </div>
+                                                    <div>
+                                                        <button onclick="location.href='/file/{{file.id}}/rename'"><i class="fas fa-edit lime-green-color"></i></button>
+                                                        <button onclick="location.href='/file/{{file.id}}/delete'"><i class="fas fa-trash-alt red-color"></i></button>
+                                                    </div>
+                                                    <div>
+                                                        <button onclick="location.href='/file/{{file.id}}'"><i class="fas fa-info-circle black-color"></i></button>
+                                                        <button onclick="location.href='/file/{{file.id}}/export'"><i class="fas fa-file-download"></i></button>
+                                                    </div>
+                                                </div>
                                             </td>
                                             {% endfor %}
                                             {% endif %}
