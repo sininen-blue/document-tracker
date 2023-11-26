@@ -199,10 +199,15 @@
                                             <td>{{ file.version_notes }}</td>
                                             <td>
                                                 <div class="btn-container">
+							<div>
                                                     <button onclick="location.href='/file/{{file.id}}/rename'"><i class="fas fa-edit lime-green-color"></i></button>
                                                     <button onclick="location.href='/file/{{file.id}}/delete'"><i class="fas fa-trash-alt red-color"></i></button>
+							</div>
+							<div>
                                                     <button onclick="location.href='/file/{{file.id}}'"><i class="fas fa-info-circle black-color"></i></button>
-                                                </div>
+						    <button onclick="location.href='/file/{{file.id}}/export'"><i class="fas fa-file-download"></i></button>
+							</div>
+                                               </div>
                                             </td>
                                             {% endfor %}
                                             {% endif %}
