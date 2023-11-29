@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@600&family=Roboto:wght@500;700&family=Wallpoet&display=swap');
+
+
 body {
     font-family: sans-serif;
     background-color: #303030;
@@ -9,19 +12,30 @@ body {
 
 header {
     background-color: #BAFF39;
-
+    font-size: 30px;
     padding: 20px 30px;
 }
 
 header a {
+    text-transform: uppercase;
     margin-left: 20px;
-
-    text-decoration: none;
-    color: #303030;
-
-    font-size: 20px;
-    font-weight: bold;
+    font-family: 'Wallpoet', sans-serif;
+    background: linear-gradient(90deg, #0a5c36, #0f5132, #14452f, #18392b, #1d1e28);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate 10s linear infinite;
 }
+@keyframes animate {
+    0% {
+        background-position: 0%;
+    }
+  
+    100% {
+        background-position: 400%;
+    }
+  }
 
 main {
     max-width: 700px;
