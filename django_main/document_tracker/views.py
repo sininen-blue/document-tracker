@@ -32,8 +32,13 @@ def register(request):
         # don't allow empty strings
         # all the other errors too
         if password == password_confirm:
-            User.objects.create_user(username, None, password)
-            return redirect("/login/")
+            try:
+                User.objects.get(username=username)
+                context = {"error": "username already taken"}
+                return render(request, "document_tracker/register.html", context)
+            except User.DoesNotExist:
+                User.objects.create_user(username, None, password)
+                return redirect("/login/")
     else:
         return render(request, "document_tracker/register.html")
 
