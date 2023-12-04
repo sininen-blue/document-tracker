@@ -18,7 +18,8 @@ def auth(request):
             login(request, user)
             return redirect("/")
         else:
-            return render(request, "document_tracker/login.html")
+            context = {"error": "incorrect credentials"}
+            return render(request, "document_tracker/login.html", context)
     else:
         return render(request, "document_tracker/login.html")
 
@@ -28,9 +29,7 @@ def register(request):
         username = request.POST["username"]
         password = request.POST["password"]
         password_confirm = request.POST["password-confirm"]
-        # if user already exists don't allow
-        # don't allow empty strings
-        # all the other errors too
+
         if password == password_confirm:
             try:
                 User.objects.get(username=username)
@@ -39,6 +38,13 @@ def register(request):
             except User.DoesNotExist:
                 User.objects.create_user(username, None, password)
                 return redirect("/login/")
+        else:
+            context = {
+                "username": username,
+                "error": "passwords do not match"
+            }
+            return render(request, "document_tracker/register.html", context)
+
     else:
         return render(request, "document_tracker/register.html")
 
